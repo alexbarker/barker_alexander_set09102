@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "barker_alexander_set09102", "barker_alexander_set09102\barker_alexander_set09102.csproj", "{DC7F6233-E6F1-4F53-945F-F385B803A9E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "euston_leisure_messaging", "barker_alexander_set09102\euston_leisure_messaging.csproj", "{DC7F6233-E6F1-4F53-945F-F385B803A9E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

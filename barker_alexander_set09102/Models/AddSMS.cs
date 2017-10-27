@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace barker_alexander_set09102.Models
+namespace euston_leisure_messaging.Models
 {
     class AddSMS
     {

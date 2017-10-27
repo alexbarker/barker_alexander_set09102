@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "euston_leisure_messages", "euston_leisure_messages\euston_leisure_messages.csproj", "{6ACC9E72-9113-434D-AB9F-21B6E75175CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6ACC9E72-9113-434D-AB9F-21B6E75175CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ACC9E72-9113-434D-AB9F-21B6E75175CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ACC9E72-9113-434D-AB9F-21B6E75175CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ACC9E72-9113-434D-AB9F-21B6E75175CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7200830B-2A3F-4BE5-96FF-92E72A42DDC7}
+	EndGlobalSection
+EndGlobal

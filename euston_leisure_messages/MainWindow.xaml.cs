@@ -24,5 +24,79 @@ namespace euston_leisure_messages
         {
             InitializeComponent();
         }
+
+        private void Exit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Message_Type_SelectionChanged(object sender, EventArgs e)
+        {
+            if (comboBox.SelectedIndex == 1)
+            {
+                Views.AddSMS form = new Views.AddSMS();
+                form.ShowDialog();
+            }
+            if (comboBox.SelectedIndex == 2)
+            {
+                Views.AddEmail form = new Views.AddEmail();
+                form.ShowDialog();
+            }
+            if (comboBox.SelectedIndex == 3)
+            {
+                Views.AddTweet form = new Views.AddTweet();
+                form.ShowDialog();
+            }
+        }
+
+        private void Add_New_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void View_SMS_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void View_Email_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void View_SIR_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void View_Tweet_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Trending_List_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Mentions_List_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SIR_List_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Back_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Next_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

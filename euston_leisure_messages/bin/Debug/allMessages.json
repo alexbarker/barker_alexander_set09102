@@ -1,0 +1,44 @@
+{"allMessages": 
+[
+  {
+    "header": "S111111100",
+    "body": "+447778889990  This is a long test message. Hello. How are you? BRB"
+  },
+  {
+    "header": "S111111101",
+    "body": "+447778881111  This is a long test message. Hello. How are you? CUL LOL"
+  },
+  {
+    "header": "E222222220",
+    "body": "alex@gmail.com Monday Meeting subject      Hello Hello Hello"
+  },
+  {
+    "header": "E222222221",
+    "body": "alex@hotmail.com Tuesday Meeting subject   Hello Hello Hello Goodbye Goodbye Goodbye"
+  },
+  {
+    "header": "E333333330",
+    "body": "joe@msn.com SIR 10/01/17        Centre Code: 11-222-33 Nature of Incident: Customer Attack   This is the body of the message"
+  },
+  {
+    "header": "E333333331",
+    "body": "ben@gmail.com SIR 19/11/17        Centre Code: 22-333-44 Nature of Incident: Personal Info Leak    Testing the body of the message"
+  },
+  {
+    "header": "T444444440",
+    "body": "@picoman This is my tweeet #tweet"
+  },
+  {
+    "header": "T444444441",
+    "body": "@picoman This is another tweet #tweet"
+  },
+  {
+    "header": "T444444442",
+    "body": "@ben Testing Testing Testing @joe"
+  },
+  {
+    "header": "T444444443",
+    "body": "@ben Testing Testing Testing Testing Testing @joe #HelloWorld"
+  }
+]
+}

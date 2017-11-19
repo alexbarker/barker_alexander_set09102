@@ -38,6 +38,7 @@
             <ComboBoxItem Content="Message Type"/>
             <ComboBoxItem Content="SMS"/>
             <ComboBoxItem Content="Email"/>
+            <ComboBoxItem Content="SIR"/>
             <ComboBoxItem Content="Tweet"/>
         </ComboBox>
 

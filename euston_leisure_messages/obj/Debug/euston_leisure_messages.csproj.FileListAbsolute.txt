@@ -34,3 +34,7 @@ C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\Views\Add
 C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\Views\AddEmail.baml
 C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\Views\AddSMS.baml
 C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\Views\AddTweet.baml
+C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\Views\AddSIR.g.cs
+C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\bin\Debug\Newtonsoft.Json.dll
+C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\bin\Debug\Newtonsoft.Json.xml
+C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\Views\AddSIR.baml

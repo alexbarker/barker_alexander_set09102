@@ -44,6 +44,11 @@ namespace euston_leisure_messages
             }
             if (comboBox.SelectedIndex == 3)
             {
+                Views.AddSIR form = new Views.AddSIR();
+                form.ShowDialog();
+            }
+            if (comboBox.SelectedIndex == 4)
+            {
                 Views.AddTweet form = new Views.AddTweet();
                 form.ShowDialog();
             }

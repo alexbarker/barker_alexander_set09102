@@ -13,7 +13,7 @@ namespace euston_leisure_messages
     {
         public DateTime dateReported { get; set; }
         public string natureOfIncident { get; set; }
-        public string sortCode { get; set; }
+        public string sortCode { get; set; }       
 
         /// <summary>
         /// uses the email class to perform normal translation to email then validates sort code, incident type
@@ -30,6 +30,9 @@ namespace euston_leisure_messages
             if (match.Success)
             {
                 this.sortCode = match.Groups[1].Value;
+                MessageHolder.SIRcodes.Add(messageID, sortCode);
+                //MessageHolder.SIRcodes.Add(messageID, sortCode);
+                //MessageHolder.SIRincidents.Add(messageID, incident);
             }
             else
             {
@@ -47,6 +50,7 @@ namespace euston_leisure_messages
                     if (nature.StartsWith(n))
                     {
                         this.natureOfIncident = n;
+                        MessageHolder.SIRincidents.Add(messageID, natureOfIncident);
                         break;
                     }
                 }

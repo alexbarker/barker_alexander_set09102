@@ -13,7 +13,6 @@ namespace euston_leisure_messages
     public class Email : Message
     {
         public string subject { get; set; }
-
         /// constructor for creating and validating email messages
         /// <param name="messageIn">raw string message</param>
         public Email(string messageIn)
@@ -31,7 +30,7 @@ namespace euston_leisure_messages
                     this.sender = match.Groups[2].ToString();
                     this.subject = match.Groups[3].ToString();
                     this.messageBody = match.Groups[4].ToString();
-                    bool hasChanged = true;              
+                    bool hasChanged = true;
 
                     while (hasChanged)
                     {

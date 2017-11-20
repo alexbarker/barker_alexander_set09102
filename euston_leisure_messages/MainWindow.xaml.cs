@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace euston_leisure_messages
 {
@@ -78,7 +80,7 @@ namespace euston_leisure_messages
         private void Trending_List_Button_Click(object sender, RoutedEventArgs e)
         {
             viewList.Items.Clear();
-            viewList.Items.Add("Trending\n");
+            viewList.Items.Add("Trending List\n");
             int x = 1;
             var values = from pair in MessageHolder.mentions orderby pair.Value.Count descending select pair.Key.ToString();
             foreach (string v in values)
@@ -96,7 +98,7 @@ namespace euston_leisure_messages
         private void Mentions_List_Button_Click(object sender, RoutedEventArgs e)
         {
             viewList.Items.Clear();
-            viewList.Items.Add("Mentions\n");
+            viewList.Items.Add("Mentions List\n");
 
             foreach (string h in MessageHolder.mentions.Keys)
             {
@@ -110,7 +112,50 @@ namespace euston_leisure_messages
 
         private void SIR_List_Button_Click(object sender, RoutedEventArgs e)
         {
+            viewList.Items.Clear();
+            viewList.Items.Add("SIR List\n");
+            int x = 1;
+            int y = 1;
 
+            foreach (string p in MessageHolder.SIRcodes.Values)
+            {
+                //if (MessageHolder.mentions[h].Contains("@"))
+                //if (p.Contains(" "))
+                // {
+                
+                viewList.Items.Add(x + " - Centre Code: " + p);
+                x++;
+                // }
+            }
+
+            viewList.Items.Add("------------------------------------");
+
+            foreach (string a in MessageHolder.SIRincidents.Values)
+            {
+                //if (MessageHolder.mentions[h].Contains("@"))
+                //if (p.Contains(" "))
+                // {
+                viewList.Items.Add(y + " - Incident: " + a);
+                y++;
+                // }
+            }
+
+            /*
+            string messageID = messageIn.Substring(0, 10);
+            messageIn = messageIn.Substring(11);
+            string sender = messageIn.Split(' ')[0];
+            string subject = messageIn.Substring(sender.Length + 1, 20);
+            int size = subject.Length + sender.Length;
+            if (subject.StartsWith("SIR"))
+            {
+                //messageIn = messageIn.Substring(50);
+                //string sortCode = messageIn.Substring(subject.Length + 1, 18);
+                //string incident = messageIn.Substring(subject.Length + 10, 22);
+                //MessageHolder.SIRcodes.Add(messageID, sortCode);
+                //MessageHolder.SIRincidents.Add(messageID, incident);
+                return "SIR";
+            }
+            */
         }
 
         private void Back_Button_Click(object sender, RoutedEventArgs e)

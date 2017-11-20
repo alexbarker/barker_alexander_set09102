@@ -37,6 +37,8 @@ namespace euston_leisure_messages
             {
                 if (getEmailType(messageIn) == "SIR")
                 {
+
+
                     return new SIR(messageIn);
                 }
                 else
@@ -79,6 +81,11 @@ namespace euston_leisure_messages
             int size = subject.Length + sender.Length;
             if (subject.StartsWith("SIR"))
             {
+                //messageIn = messageIn.Substring(50);
+                //string sortCode = messageIn.Substring(subject.Length + 1, 18);
+                //string incident = messageIn.Substring(subject.Length + 10, 22);
+                //MessageHolder.SIRcodes.Add(messageID, sortCode);
+                //MessageHolder.SIRincidents.Add(messageID, incident);
                 return "SIR";
             }
             else

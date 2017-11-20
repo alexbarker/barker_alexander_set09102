@@ -19,12 +19,14 @@ namespace euston_leisure_messages
         public static int currentSMSID; //current highest SMS id, used for incrementing on new messages being input
 
         //different incident types for SIR emails(may require updating if new incident types arise)
-        public static string[] incidentTypes = { "Theft", "Staff Attack", "ATM Theft", "Raid", "Customer Attack", "Staff Abuse", "Bomb Threat", "Terrorism", "Suspicious Incident", "Intelligence", "Cash Loss" };
+        public static string[] incidentTypes = { "Theft of Properties", "Staff Attack", "Device Damage", "Raid", "Customer Attack", "Staff Abuse", "Bomb Threat", "Terrorism", "Suspicious Incident", "Sport Injury", "Personal Info Leak" };
         public static MessageRefresher refresher = MessageRefresher.getInstance(); //loop checks for new messages
         public static Dictionary<string, string> textspeak = new Dictionary<string, string>(); //abbreviation dictionary
         public static Dictionary<string, string> quarantined = new Dictionary<string, string>(); //quarantined URLs
         public static Dictionary<string, List<string>> mentions = new Dictionary<string, List<String>>(); //mentions is tweets
         public static CSVReader r = new CSVReader();
+        public static Dictionary<string, string> SIRcodes = new Dictionary<string, string>();
+        public static Dictionary<string, string> SIRincidents = new Dictionary<string, string>();
 
         //populates the variables in this class when the application starts
         public static void readMessages()

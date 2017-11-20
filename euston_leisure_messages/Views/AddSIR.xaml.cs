@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,9 +11,8 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace euston_leisure_messages.Views
 {
@@ -33,10 +33,83 @@ namespace euston_leisure_messages.Views
 
         private void Confirm_SIREmail_Button_Click(object sender, RoutedEventArgs e)
         {
+            if (validateInput())
+            {
+                string currentID = id.Text;
+                if (currentID.Length < 9)
+                {
+                    string zeros = String.Concat(Enumerable.Repeat("0", 9 - currentID.Length));
+                    currentID = zeros + currentID;
 
+                }
+                currentID = "E" + currentID;
 
+                ComboBoxItem cmb = (ComboBoxItem)incidentTypeCombo.SelectedItem;
+                string subject = "SIR " + System.DateTime.Now.ToString("dd/MM/yy");
+                string messageBody = "Sort Code: " + centerCode1.Text + "-" + centerCode2.Text + "-" + centerCode3.Text + " " + "Nature of Incident: " + cmb.Content + " " + messageTextbox.Text;
 
-            this.Close();
+                subject += String.Concat(Enumerable.Repeat(" ", 20 - subject.Length));
+
+                SIR sir = new SIR(currentID + " " + emailTextbox.Text + " " + subject + messageBody);
+                MessageHolder.currentEmailID++;
+                MessageHolder.addMessage(currentID, sir);
+
+                MessageBox.Show(currentID + " " + emailTextbox.Text + " " + subject + messageBody);
+            }
+        }
+
+        /// <summary>
+        /// ensures that input meets standards described in initial docs
+        /// </summary>
+        /// <returns></returns>
+        private bool validateInput()
+        {
+            string pattern = @"[!#$%&'\\*\\+\\-\\/\\=\\?\\^\\_`\\{\\|\\}\\~\\+a-zA-Z0-9\\.]+@.*?[a-zA-Z0-9\\.]+";
+            Regex re = new Regex(pattern);
+            Match m = Regex.Match(emailTextbox.Text, pattern);
+            bool canAdd = true;
+
+            if (!m.Success)
+            {
+                MessageBox.Show("Invalid email address ");
+                canAdd = false;
+            }
+
+            int sc1, sc2, sc3;
+
+            bool ty = int.TryParse(centerCode1.Text, out sc1);
+            if (ty)
+            {
+
+                ty = int.TryParse(centerCode2.Text, out sc2);
+                if (ty)
+                {
+                    ty = int.TryParse(centerCode3.Text, out sc3);
+                }
+            }
+            if (!ty)
+            {
+                MessageBox.Show("Enter a valid centre code ");
+            }
+
+            if (centerCode1.Text.Length != 2 || centerCode2.Text.Length != 3 || centerCode3.Text.Length != 2)
+            {
+                canAdd = false;
+            }
+
+            ComboBoxItem cmb = (ComboBoxItem)incidentTypeCombo.SelectedItem;
+
+            if (cmb == null)
+            {
+                canAdd = false;
+                MessageBox.Show("Please select an incident type ");
+            }
+            if (String.IsNullOrEmpty(messageTextbox.Text))
+            {
+                MessageBox.Show("Please provide details of Incident ");
+            }
+            return canAdd;
+
         }
     }
 }

@@ -56,9 +56,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CSVReader.cs" />
     <Compile Include="Email.cs" />
     <Compile Include="Json.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="MessageHolder.cs" />
     <Compile Include="MessageReader.cs" />
+    <Compile Include="MessageRefresher.cs" />
+    <Compile Include="Observer.cs" />
     <Compile Include="SIR.cs" />
     <Compile Include="SMS.cs" />
     <Compile Include="Tweet.cs" />

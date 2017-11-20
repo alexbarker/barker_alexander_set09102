@@ -33,10 +33,55 @@ namespace euston_leisure_messages.Views
 
         private void Confirm_SMS_Button_Click(object sender, RoutedEventArgs e)
         {
+            if (validateInput())
+            {
+                string currentID = id.Text;
+                if (currentID.Length < 9)
+                {
+                    string zeros = String.Concat(Enumerable.Repeat("0", 9 - currentID.Length));
+                    currentID = zeros + currentID;
 
+                }
+                currentID = "S" + currentID;
 
+                SMS sms = new SMS(currentID + " " + phoneNoTextbox.Text + " " + messageTextbox.Text);
+                MessageHolder.currentSMSID++;
+                MessageHolder.addMessage(currentID, sms);
+            }
+        }
 
-            this.Close();
+        //validates the textboxes to ensure format meets the specification described in the
+        //initial documentation
+        public bool validateInput()
+        {
+            bool canAdd = true;
+            string phoneNo = phoneNoTextbox.Text.Replace(" ", "");
+            phoneNo = phoneNoTextbox.Text.Replace("+", "");
+            long n;
+            bool isNumeric = long.TryParse(phoneNo, out n);
+
+            if (!isNumeric || string.IsNullOrEmpty(phoneNo))
+            {
+                MessageBox.Show("Please enter a valid number(International format).");
+                canAdd = false;
+            }
+            else if (phoneNo.Length != 12)
+            {
+                MessageBox.Show("Please enter a valid number(International format) .");
+                canAdd = false;
+            }
+            if (messageTextbox.Text.Length >= 140)
+            {
+                MessageBox.Show("140 Character maximum for message text.");
+                canAdd = false;
+            }
+            else if (string.IsNullOrEmpty(messageTextbox.Text))
+            {
+                MessageBox.Show("Please enter a message ");
+                canAdd = false;
+            }
+
+            return canAdd;
         }
     }
 }

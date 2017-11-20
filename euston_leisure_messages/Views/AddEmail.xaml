@@ -8,15 +8,16 @@
         Title="AddEmail" Height="550" Width="308">
     <Grid>
         <Label Content="Email Address" HorizontalAlignment="Left" Margin="10,89,0,0" VerticalAlignment="Top" Width="121" FontWeight="Bold"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,115,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="231"/>
+        <TextBox Name="emailTextbox" HorizontalAlignment="Left" Height="23" Margin="10,115,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="231"/>
         <Label Content="Message" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" Width="121" FontWeight="Bold"/>
-        <TextBox HorizontalAlignment="Left" Height="226" Margin="10,227,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="272"/>
+        <TextBox Name="messageTextbox" HorizontalAlignment="Left" Height="226" Margin="10,227,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="272"/>
         <Button Content="Confirm" HorizontalAlignment="Left" Margin="10,472,0,0" VerticalAlignment="Top" Width="100" Height="30" Background="#FFC8D9EA" FontWeight="Bold" Click="Confirm_Email_Button_Click"/>
         <Button Content="Close" HorizontalAlignment="Left" Margin="182,472,0,0" VerticalAlignment="Top" Width="100" Height="30" Background="#FFC8D9EA" FontWeight="Bold" Click="Close_Email_Button_Click"/>
         <Label Content="Subject" HorizontalAlignment="Left" Margin="10,141,0,0" VerticalAlignment="Top" Width="121" FontWeight="Bold"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,167,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="231"/>
+        <TextBox Name="subjectTextbox" HorizontalAlignment="Left" Height="23" Margin="10,167,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="231"/>
         <Label Content="Message ID" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Width="121" FontWeight="Bold"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,66,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="231"/>
+        <TextBox Name="id" HorizontalAlignment="Left" Height="23" Margin="33,66,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="208"/>
+        <Label Content="E" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="23" FontWeight="Bold"/>
 
     </Grid>
 </Window>

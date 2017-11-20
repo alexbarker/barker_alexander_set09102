@@ -29,11 +29,10 @@
         <Button Content="Mentions" HorizontalAlignment="Left" Margin="858,149,0,0" VerticalAlignment="Top" Width="100" Height="30" Background="#FFC8D9EA" FontWeight="Bold" Click="Mentions_List_Button_Click"/>
         <Button Content="SIR" HorizontalAlignment="Left" Margin="858,191,0,0" VerticalAlignment="Top" Width="100" Height="30" Background="#FFC8D9EA" FontWeight="Bold" Click="SIR_List_Button_Click"/>
         <Label Content="    View List" HorizontalAlignment="Left" Height="35" Margin="850,58,0,0" VerticalAlignment="Top" Width="108" FontWeight="Bold" FontSize="16"/>
-        <TextBlock HorizontalAlignment="Left" Margin="183,112,0,0" TextWrapping="Wrap" Text="No message selected." VerticalAlignment="Top" Height="205" Width="364"/>
-        <TextBlock HorizontalAlignment="Left" Margin="582,56,0,0" TextWrapping="Wrap" Text="No list selected." VerticalAlignment="Top" Height="315" Width="227"/>
+        <TextBlock x:Name="viewBox" HorizontalAlignment="Left" Margin="183,112,0,0" TextWrapping="Wrap" Text="No message selected." VerticalAlignment="Top" Height="205" Width="364"/>
         <Label Content="  New Message" HorizontalAlignment="Left" Height="31" Margin="20,62,0,0" VerticalAlignment="Top" Width="129" FontWeight="Bold" FontSize="16"/>
-        <Button Content="Back" HorizontalAlignment="Left" Margin="199,329,0,0" VerticalAlignment="Top" Width="100" Height="30" Background="#FFC8D9EA" FontWeight="Bold" Click="Back_Button_Click"/>
-        <Button Content="Next" HorizontalAlignment="Left" Margin="428,329,0,0" VerticalAlignment="Top" Width="100" Height="30" Background="#FFC8D9EA" FontWeight="Bold" Click="Next_Button_Click"/>
+        <Button Content="Back" HorizontalAlignment="Left" Margin="175,331,0,0" VerticalAlignment="Top" Width="100" Height="30" Background="#FFC8D9EA" FontWeight="Bold" Click="Back_Button_Click"/>
+        <Button Content="Next" HorizontalAlignment="Left" Margin="447,331,0,0" VerticalAlignment="Top" Width="100" Height="30" Background="#FFC8D9EA" FontWeight="Bold" Click="Next_Button_Click"/>
         <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="168,67,0,0" VerticalAlignment="Top" Width="142" SelectionChanged="Message_Type_SelectionChanged" IsSynchronizedWithCurrentItem="True" SelectedIndex="0">
             <ComboBoxItem Content="Message Type"/>
             <ComboBoxItem Content="SMS"/>
@@ -41,6 +40,10 @@
             <ComboBoxItem Content="SIR"/>
             <ComboBoxItem Content="Tweet"/>
         </ComboBox>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="208" Margin="175,109,0,0" VerticalAlignment="Top" Width="372"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="316" Margin="578,55,0,0" VerticalAlignment="Top" Width="231"/>
+        <Button Content="Sanitize" HorizontalAlignment="Left" Margin="310,331,0,0" VerticalAlignment="Top" Width="100" Height="30" Background="#FFC8D9EA" FontWeight="Bold" Click="Sanitize_Button_Click"/>
+        <ListBox Name="viewList" HorizontalAlignment="Left" Height="299" Margin="588,62,0,0" VerticalAlignment="Top" Width="211"/>
 
     </Grid>
 </Window>

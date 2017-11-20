@@ -23,6 +23,7 @@ namespace euston_leisure_messages
         public MainWindow()
         {
             InitializeComponent();
+            MessageHolder.readMessages();
         }
 
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
@@ -54,11 +55,6 @@ namespace euston_leisure_messages
             }
         }
 
-        private void Add_New_Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void View_SMS_Button_Click(object sender, RoutedEventArgs e)
         {
 
@@ -74,19 +70,42 @@ namespace euston_leisure_messages
 
         }
 
-        private void View_Tweet_Button_Click(object sender, RoutedEventArgs e)
+        public void View_Tweet_Button_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
         private void Trending_List_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            viewList.Items.Clear();
+            viewList.Items.Add("Trending\n");
+            int x = 1;
+            var values = from pair in MessageHolder.mentions orderby pair.Value.Count descending select pair.Key.ToString();
+            foreach (string v in values)
+            {
+                if (v.StartsWith("#")) //dont want to also add "mentions" (@ symbol) 
+                {
+                    viewList.Items.Add("Rank: " + x + " - " + v);
+                    //viewList.Text = v;
+                    //viewList.Text = "\n";
+                    x++;
+                }
+            }
         }
 
         private void Mentions_List_Button_Click(object sender, RoutedEventArgs e)
         {
+            viewList.Items.Clear();
+            viewList.Items.Add("Mentions\n");
 
+            foreach (string h in MessageHolder.mentions.Keys)
+            {
+                //if (MessageHolder.mentions[h].Contains("@"))
+                if (h.StartsWith("@"))
+                {
+                    viewList.Items.Add(h);
+                }
+            }
         }
 
         private void SIR_List_Button_Click(object sender, RoutedEventArgs e)
@@ -103,5 +122,10 @@ namespace euston_leisure_messages
         {
 
         }
-    }
+
+        private void Sanitize_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+}
 }

@@ -16,7 +16,6 @@ C:\Users\40333139\Documents\barker_alexander_set09102\euston_leisure_messages\ob
 C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\bin\Debug\euston_leisure_messages.exe.config
 C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\bin\Debug\euston_leisure_messages.exe
 C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\bin\Debug\euston_leisure_messages.pdb
-C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\euston_leisure_messages.csprojResolveAssemblyReference.cache
 C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\MainWindow.g.cs
 C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\App.g.cs
 C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\euston_leisure_messages_MarkupCompile.cache
@@ -38,3 +37,9 @@ C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\Views\Add
 C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\bin\Debug\Newtonsoft.Json.dll
 C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\bin\Debug\Newtonsoft.Json.xml
 C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\Views\AddSIR.baml
+C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\MessageReaderViewer.g.cs
+C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\MessageViewer.g.cs
+C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\ViewMessage.g.cs
+C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\MessageReaderViewer.baml
+C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\MessageViewer.baml
+C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\ViewMessage.baml

@@ -12,7 +12,7 @@ namespace euston_leisure_messages
     /// <summary>
     /// SET09102 2017-8 TR1 001 - Software Engineering
     /// Euston Leisure Message System
-    /// Version 0.4.3
+    /// Version 0.4.4
     /// Alexander Barker 
     /// 40333139
     /// Created on 30th October 2017

@@ -1,0 +1,24 @@
+﻿<Window x:Class="euston_leisure_messages.MessageViewer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:euston_leisure_messages"
+        mc:Ignorable="d"
+        Title="MessageViewer" Height="451.786" Width="496.173">
+    <Grid Margin="0,0,-16,9">
+        <ListBox x:Name="messageListBox" HorizontalAlignment="Left" Height="275" Margin="10,105,0,-15" VerticalAlignment="Top" Width="461" SelectionChanged="messageListBox_SelectionChanged" Loaded="messageListBox_Loaded"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="283,63,0,0" VerticalAlignment="Top" Width="188" Height="29" SelectionChanged="comboBox_SelectionChanged" SelectedIndex="0">
+            <ListBoxItem Content="Choose Type" FontWeight="Bold"/>
+            <ListBoxItem Content="All" IsSelected="True" FontWeight="Bold"/>
+            <ListBoxItem Content="SMS" FontWeight="Bold"/>
+            <ListBoxItem Content="Standard Emails" FontWeight="Bold"/>
+            <ListBoxItem Content="SIR Emails" FontWeight="Bold"/>
+            <ListBoxItem Content="Tweets" FontWeight="Bold"/>
+        </ComboBox>
+        <Label x:Name="label" Content="Message Viewer" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" Cursor="None" FontSize="14" FontWeight="Bold"/>
+
+
+
+    </Grid>
+</Window>

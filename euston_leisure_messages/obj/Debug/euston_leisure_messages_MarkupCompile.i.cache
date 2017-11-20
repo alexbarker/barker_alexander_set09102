@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\App.xaml
-51618895917
+8-2071784522
 
-24-1860264206
+27-689521068
 14194502092
-MainWindow.xaml;Views\AddEmail.xaml;Views\AddSIR.xaml;Views\AddSMS.xaml;Views\AddTweet.xaml;
+MainWindow.xaml;MessageReaderViewer.xaml;MessageViewer.xaml;ViewMessage.xaml;Views\AddEmail.xaml;Views\AddSIR.xaml;Views\AddSMS.xaml;Views\AddTweet.xaml;
 
 False
 

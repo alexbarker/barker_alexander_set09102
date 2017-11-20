@@ -69,6 +69,10 @@ namespace euston_leisure_messages
 
         private void View_SMS_Button_Click(object sender, RoutedEventArgs e)
         {
+             Window win = new MessageViewer();
+             win.Show();
+            
+            //MessageReaderViewer.loadContent();
 
         }
 
@@ -176,7 +180,7 @@ namespace euston_leisure_messages
         {
 
         }
-
-
     }
 }
+
+

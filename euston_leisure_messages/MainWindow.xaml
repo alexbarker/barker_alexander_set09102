@@ -44,6 +44,7 @@
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="316" Margin="578,55,0,0" VerticalAlignment="Top" Width="231"/>
         <Button Content="Sanitize" HorizontalAlignment="Left" Margin="310,331,0,0" VerticalAlignment="Top" Width="100" Height="30" Background="#FFC8D9EA" FontWeight="Bold" Click="Sanitize_Button_Click"/>
         <ListBox Name="viewList" HorizontalAlignment="Left" Height="299" Margin="588,62,0,0" VerticalAlignment="Top" Width="211"/>
+        <Button Content="Quarantine" HorizontalAlignment="Left" Margin="858,234,0,0" VerticalAlignment="Top" Width="100" Height="30" Background="#FFC8D9EA" FontWeight="Bold" Click="Quarantine_List_Button_Click"/>
 
     </Grid>
 </Window>

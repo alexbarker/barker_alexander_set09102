@@ -139,23 +139,17 @@ namespace euston_leisure_messages
                 y++;
                 // }
             }
+        }
 
-            /*
-            string messageID = messageIn.Substring(0, 10);
-            messageIn = messageIn.Substring(11);
-            string sender = messageIn.Split(' ')[0];
-            string subject = messageIn.Substring(sender.Length + 1, 20);
-            int size = subject.Length + sender.Length;
-            if (subject.StartsWith("SIR"))
+        private void Quarantine_List_Button_Click(object sender, RoutedEventArgs e)
+        {
+            viewList.Items.Clear();
+            viewList.Items.Add("Quarantined List\n");
+
+            foreach (string s in MessageHolder.quarantined.Keys)
             {
-                //messageIn = messageIn.Substring(50);
-                //string sortCode = messageIn.Substring(subject.Length + 1, 18);
-                //string incident = messageIn.Substring(subject.Length + 10, 22);
-                //MessageHolder.SIRcodes.Add(messageID, sortCode);
-                //MessageHolder.SIRincidents.Add(messageID, incident);
-                return "SIR";
+                viewList.Items.Add(s);
             }
-            */
         }
 
         private void Back_Button_Click(object sender, RoutedEventArgs e)
@@ -172,5 +166,7 @@ namespace euston_leisure_messages
         {
 
         }
-}
+
+
+    }
 }

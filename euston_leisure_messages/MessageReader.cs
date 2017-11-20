@@ -10,6 +10,19 @@ using System.Windows;
 
 namespace euston_leisure_messages
 {
+    /// <summary>
+    /// SET09102 2017-8 TR1 001 - Software Engineering
+    /// Euston Leisure Message System
+    /// Version 0.4.3
+    /// Alexander Barker 
+    /// 40333139
+    /// Created on 30th October 2017
+    /// Last Updated on 20th November 2017
+    /// </summary>
+    /// <summary>
+    /// MessageReader.cs - 
+    /// </summary>
+
     public class MessageReader
     {
         public string header { get; set; }
@@ -81,11 +94,6 @@ namespace euston_leisure_messages
             int size = subject.Length + sender.Length;
             if (subject.StartsWith("SIR"))
             {
-                //messageIn = messageIn.Substring(50);
-                //string sortCode = messageIn.Substring(subject.Length + 1, 18);
-                //string incident = messageIn.Substring(subject.Length + 10, 22);
-                //MessageHolder.SIRcodes.Add(messageID, sortCode);
-                //MessageHolder.SIRincidents.Add(messageID, incident);
                 return "SIR";
             }
             else

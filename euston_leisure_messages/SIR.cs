@@ -9,11 +9,24 @@ using System.Text.RegularExpressions;
 
 namespace euston_leisure_messages
 {
+    /// <summary>
+    /// SET09102 2017-8 TR1 001 - Software Engineering
+    /// Euston Leisure Message System
+    /// Version 0.4.3
+    /// Alexander Barker 
+    /// 40333139
+    /// Created on 30th October 2017
+    /// Last Updated on 20th November 2017
+    /// </summary>
+    /// <summary>
+    /// SIR.cs - 
+    /// </summary>
+
     public class SIR : Email
     {
         public DateTime dateReported { get; set; }
         public string natureOfIncident { get; set; }
-        public string sortCode { get; set; }       
+        public string centCode { get; set; }       
 
         /// <summary>
         /// uses the email class to perform normal translation to email then validates sort code, incident type
@@ -25,12 +38,12 @@ namespace euston_leisure_messages
             DateTime reportDate;
             DateTime.TryParse(this.subject.Substring(4, 8), out reportDate);
             this.dateReported = reportDate;
-            Regex regex = new Regex(@"Sort Code: ([0-9-]+)"); //finds the sort code in the message body
+            Regex regex = new Regex(@"Cent Code: ([0-9-]+)"); //finds the sort code in the message body
             Match match = regex.Match(messageIn);
             if (match.Success)
             {
-                this.sortCode = match.Groups[1].Value;
-                MessageHolder.SIRcodes.Add(messageID, sortCode);
+                this.centCode = match.Groups[1].Value;
+                MessageHolder.SIRcodes.Add(messageID, centCode);
                 //MessageHolder.SIRcodes.Add(messageID, sortCode);
                 //MessageHolder.SIRincidents.Add(messageID, incident);
             }

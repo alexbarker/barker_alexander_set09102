@@ -17,8 +17,18 @@ using System.Windows.Shapes;
 namespace euston_leisure_messages.Views
 {
     /// <summary>
-    /// Interaction logic for AddSIR.xaml
+    /// SET09102 2017-8 TR1 001 - Software Engineering
+    /// Euston Leisure Message System
+    /// Version 0.4.3
+    /// Alexander Barker 
+    /// 40333139
+    /// Created on 30th October 2017
+    /// Last Updated on 20th November 2017
     /// </summary>
+    /// <summary>
+    /// AddSIR.xaml.cs - 
+    /// </summary>
+
     public partial class AddSIR : Window
     {
         public AddSIR()
@@ -46,7 +56,7 @@ namespace euston_leisure_messages.Views
 
                 ComboBoxItem cmb = (ComboBoxItem)incidentTypeCombo.SelectedItem;
                 string subject = "SIR " + System.DateTime.Now.ToString("dd/MM/yy");
-                string messageBody = "Sort Code: " + centerCode1.Text + "-" + centerCode2.Text + "-" + centerCode3.Text + " " + "Nature of Incident: " + cmb.Content + " " + messageTextbox.Text;
+                string messageBody = "Cent Code: " + centerCode1.Text + "-" + centerCode2.Text + "-" + centerCode3.Text + " " + "Nature of Incident: " + cmb.Content + " " + messageTextbox.Text;
 
                 subject += String.Concat(Enumerable.Repeat(" ", 20 - subject.Length));
 
@@ -75,16 +85,16 @@ namespace euston_leisure_messages.Views
                 canAdd = false;
             }
 
-            int sc1, sc2, sc3;
+            int cc1, cc2, cc3;
 
-            bool ty = int.TryParse(centerCode1.Text, out sc1);
+            bool ty = int.TryParse(centerCode1.Text, out cc1);
             if (ty)
             {
 
-                ty = int.TryParse(centerCode2.Text, out sc2);
+                ty = int.TryParse(centerCode2.Text, out cc2);
                 if (ty)
                 {
-                    ty = int.TryParse(centerCode3.Text, out sc3);
+                    ty = int.TryParse(centerCode3.Text, out cc3);
                 }
             }
             if (!ty)

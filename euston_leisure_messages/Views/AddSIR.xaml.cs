@@ -19,7 +19,7 @@ namespace euston_leisure_messages.Views
     /// <summary>
     /// SET09102 2017-8 TR1 001 - Software Engineering
     /// Euston Leisure Message System
-    /// Version 0.4.3
+    /// Version 0.4.5
     /// Alexander Barker 
     /// 40333139
     /// Created on 30th October 2017
@@ -78,6 +78,19 @@ namespace euston_leisure_messages.Views
             Regex re = new Regex(pattern);
             Match m = Regex.Match(emailTextbox.Text, pattern);
             bool canAdd = true;
+
+            int parsedValue;
+            if (!int.TryParse(id.Text, out parsedValue))
+            {
+                MessageBox.Show("This is a number only field");
+                canAdd = false;
+            }
+            if (id.Text.Length > 9 || String.IsNullOrEmpty(id.Text))
+            {
+                MessageBox.Show("Invalid id");
+                //errorLbl.Content += "Message cant be more than 140 characters " + Environment.NewLine;
+                canAdd = false;
+            }
 
             if (!m.Success)
             {

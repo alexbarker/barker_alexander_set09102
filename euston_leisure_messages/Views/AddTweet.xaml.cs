@@ -66,6 +66,19 @@ namespace euston_leisure_messages.Views
         private bool validateInput()
         {           
             bool canAdd = true;
+            int parsedValue;
+            if (!int.TryParse(id.Text, out parsedValue))
+            {
+                MessageBox.Show("This is a number only field");
+                canAdd = false;
+            }
+            if (id.Text.Length > 9 || String.IsNullOrEmpty(id.Text))
+            {
+                MessageBox.Show("Invalid id");
+                //errorLbl.Content += "Message cant be more than 140 characters " + Environment.NewLine;
+                canAdd = false;
+            }
+
             if (twitterHandle.Text.StartsWith("@")) //all twitter handles start with "@"
             {
                 if (twitterHandle.Text.Length > 15 || String.IsNullOrEmpty(twitterHandle.Text))

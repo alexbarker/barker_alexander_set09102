@@ -11,7 +11,7 @@ namespace euston_leisure_messages
     /// <summary>
     /// SET09102 2017-8 TR1 001 - Software Engineering
     /// Euston Leisure Message System
-    /// Version 0.4.4
+    /// Version 0.4.5
     /// Alexander Barker 
     /// 40333139
     /// Created on 30th October 2017
@@ -42,12 +42,19 @@ namespace euston_leisure_messages
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid tweet message");
+                    MessageBox.Show("Invalid Tweet");
+                    //throw new ArgumentException("Invalid tweet message");
+                    return;
                 }
             }
             else
             {
-                throw new ArgumentException("Invalid Tweet data");
+                MessageBox.Show("Invalid Tweet");
+                //throw new ArgumentException("Invalid Tweet data");
+                //this.Close();
+                //Views.AddTweet form = new Views.AddTweet();
+                //form.ShowDialog();
+                return;
             }
             //find all the hashtags in the message body
             string[] hashtags = this.messageBody.Split(' ');

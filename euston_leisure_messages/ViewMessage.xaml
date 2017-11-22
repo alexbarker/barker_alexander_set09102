@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:euston_leisure_messages"
         mc:Ignorable="d"
         Title="ViewMessage" Height="480" Width="384">
-    <Grid Margin="0,0,2,0">
+    <Grid Margin="0,0,2,0" Background="#FFE8F4F5">
         <Frame x:Name="frame" Content="" HorizontalAlignment="Left" Height="304" Margin="10,35,0,0" VerticalAlignment="Top" Width="348"/>
 
     </Grid>

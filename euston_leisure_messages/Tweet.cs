@@ -11,30 +11,30 @@ namespace euston_leisure_messages
     /// <summary>
     /// SET09102 2017-8 TR1 001 - Software Engineering
     /// Euston Leisure Message System
-    /// Version 0.4.5
+    /// Version 0.5.0
     /// Alexander Barker 
     /// 40333139
     /// Created on 30th October 2017
-    /// Last Updated on 20th November 2017
+    /// Last Updated on 22th November 2017
     /// </summary>
     /// <summary>
-    /// Tweet.cs - 
+    /// Tweet.cs - This class is responsible for validating and preparing Tweet messages.
     /// </summary>
 
     public class Tweet : Message
     {
 
         /// <summary>
-        /// validates and creates a new tweet message
+        /// Tweet validation, adds new Tweet.
         /// </summary>
-        /// <param name="messageIn"></param>
+        /// <param name="messageIn">Message body.</param>
         public Tweet(string messageIn)
         {
             Regex re = new Regex(@"(T\d{9}) (@.*?) (.+)");
             Match m = re.Match(messageIn);
             if (m.Success)
             {
-                if (validateInput(m.Groups[2].ToString(), m.Groups[3].ToString()))
+                if (ValidateTweet(m.Groups[2].ToString(), m.Groups[3].ToString()))
                 {
                     this.messageID = m.Groups[1].ToString();
                     this.sender = m.Groups[2].ToString();
@@ -42,44 +42,40 @@ namespace euston_leisure_messages
                 }
                 else
                 {
-                    MessageBox.Show("Invalid Tweet");
-                    //throw new ArgumentException("Invalid tweet message");
+                    MessageBox.Show("Invalid Tweet!");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("Invalid Tweet");
-                //throw new ArgumentException("Invalid Tweet data");
-                //this.Close();
-                //Views.AddTweet form = new Views.AddTweet();
-                //form.ShowDialog();
+                MessageBox.Show("Invalid Tweet!");
                 return;
             }
-            //find all the hashtags in the message body
+
+            // Search the message body for #.
             string[] hashtags = this.messageBody.Split(' ');
             foreach (string h in hashtags)
             {
                 if (h.StartsWith("#") || h.StartsWith("@"))
                 {
                     string tag = h;
-                    if (MessageHolder.mentions.ContainsKey(tag)) //check if its already used
+                    if (MessageHolder.mentions.ContainsKey(tag)) 
                     {
                         if (!MessageHolder.mentions[tag].Contains(this.messageID))
                         {
-                            MessageHolder.mentions[tag].Add(this.messageID); //add this meessage id to the list if its been used 
+                            MessageHolder.mentions[tag].Add(this.messageID); // Adds the mention to a list.
                         }
                     }
                     else
                     {
-                        MessageHolder.mentions.Add(tag, new List<String>()); //create new dictionary item for hashtag if not found
+                        MessageHolder.mentions.Add(tag, new List<String>());
                         MessageHolder.mentions[tag].Add(this.messageID);
                     }
                 }
             }
         }
 
-        public bool validateInput(string se, string mb)
+        public bool ValidateTweet(string se, string mb)
         {
             if (se.Length <= 15 && mb.Length <= 140)
             {
@@ -97,6 +93,7 @@ namespace euston_leisure_messages
                 return false;
             }
         }
+
         public override MessageReader returnData()
         {
             return new MessageReader(this.messageID, this.sender + " " + this.messageBody);

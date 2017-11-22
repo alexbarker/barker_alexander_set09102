@@ -15,34 +15,43 @@ using System.Windows.Shapes;
 namespace euston_leisure_messages
 {
     /// <summary>
-    /// Interaction logic for MessageViewer.xaml
+    /// SET09102 2017-8 TR1 001 - Software Engineering
+    /// Euston Leisure Message System
+    /// Version 0.5.0
+    /// Alexander Barker 
+    /// 40333139
+    /// Created on 30th October 2017
+    /// Last Updated on 22th November 2017
     /// </summary>
+    /// <summary>
+    /// MessageViewer.cs - This class creates a list of clickable messages of viewing.
+    /// </summary>
+    
     public partial class MessageViewer : Window
     {
-
 
         public MessageViewer()
         {
             InitializeComponent();
         }
 
-        /// used to refresh listboxes
-        /// <param name="typeIn">type of messages to show</param>
-        private void refreshData(string typeIn)
+        /// Get all the boxes.
+        /// <param name="getType">Get the type of message.</param>
+        private void RefreshData(string getType)
         {
-            if (typeIn == "all") //shows all messages in the list
+            if (getType == "all") // Display all the messages.
             {
-                messageListBox.Items.Clear(); //have to clear listbox to avoid duplicates, could check for delta in future
+                messageListBox.Items.Clear(); // Clear the list.
                 foreach (Message m in MessageHolder.messages.Values)
                 {
                     string messageType = m.GetType().ToString();
                     string[] splitval = messageType.Split('.');
                     MessageReader proc = m.returnData();
                     string body = proc.body;
-                    messageListBox.Items.Add(createGrid(proc.header, body, splitval[splitval.Length - 1]));
+                    messageListBox.Items.Add(MakeList(proc.header, body, splitval[splitval.Length - 1]));
                 }
             }
-            else //a message type has been selected so filter the messages to show only the select type
+            else // Display by type.
             {
                 messageListBox.Items.Clear();
                 foreach (Message m in MessageHolder.messages.Values)
@@ -52,40 +61,39 @@ namespace euston_leisure_messages
                     MessageReader proc = m.returnData();
                     string body = proc.body;
 
-                    //checks if the message type is the same as the selected type in combo box
-                    if (splitval[splitval.Length - 1] == typeIn)
+                    if (splitval[splitval.Length - 1] == getType)
                     {
-                        messageListBox.Items.Add(createGrid(proc.header, body, splitval[splitval.Length - 1]));
+                        messageListBox.Items.Add(MakeList(proc.header, body, splitval[splitval.Length - 1]));
                     }
                 }
             }
         }
 
-        //creates a grid for adding to listbox
-        /// <param name="header">message header</param>
-        /// <param name="body">message body</param>
-        /// <param name="messageType">message type</param>
-        private Grid createGrid(string header, string body, string messageType)
+        // Creates the box for the list.
+        /// <param name="header">Message header.</param>
+        /// <param name="body">Message body.</param>
+        /// <param name="messageType">Message type.</param>
+        private Grid MakeList(string header, string body, string messageType)
         {
-            Grid myGrid = new Grid();
-            myGrid.Width = messageListBox.Width;
-            myGrid.Height = 50;
-            myGrid.HorizontalAlignment = HorizontalAlignment.Left;
-            myGrid.VerticalAlignment = VerticalAlignment.Top;
-            myGrid.ShowGridLines = true;
+            Grid box = new Grid();
+            box.Width = messageListBox.Width;
+            box.Height = 50;
+            box.HorizontalAlignment = HorizontalAlignment.Left;
+            box.VerticalAlignment = VerticalAlignment.Top;
+            box.ShowGridLines = true;
 
             // Define the Columns
             ColumnDefinition colDef1 = new ColumnDefinition();
             ColumnDefinition colDef2 = new ColumnDefinition();
             ColumnDefinition colDef3 = new ColumnDefinition();
 
-            myGrid.ColumnDefinitions.Add(colDef1);
-            myGrid.ColumnDefinitions.Add(colDef2);
-            myGrid.ColumnDefinitions.Add(colDef3);
+            box.ColumnDefinitions.Add(colDef1);
+            box.ColumnDefinitions.Add(colDef2);
+            box.ColumnDefinitions.Add(colDef3);
 
             // Define the Rows
             RowDefinition rowDef1 = new RowDefinition();
-            myGrid.RowDefinitions.Add(rowDef1);
+            box.RowDefinitions.Add(rowDef1);
 
             // Add the second text cell to the Grid
             Label txt1 = new Label();
@@ -108,68 +116,60 @@ namespace euston_leisure_messages
             Grid.SetRow(txt3, 0);
             Grid.SetColumn(txt3, 2);
 
-            myGrid.Children.Add(txt1);
-            myGrid.Children.Add(txt2);
-            myGrid.Children.Add(txt3);
+            box.Children.Add(txt1);
+            box.Children.Add(txt2);
+            box.Children.Add(txt3);
 
-            return myGrid;
+            return box;
         }
 
-        //used to open a window to display the selected message 
-        private void messageListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        // Detect message selection.
+        private void MessageListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
                 String msg = "";
                 Grid message = (Grid)messageListBox.SelectedValue;
                 msg += ((Label)message.Children[0]).Content;
-                /*
-                if (MessageHolder.messages[msg].seen == false)
-                {
-                    MessageHolder.messages[msg].seen = true;
-                    MessageHolder.refresher.addNewSeen();
-                }*/
 
-                Window messV = new ViewMessage(msg);
-                messV.Show();
+                Window messageViewer = new ViewMessage(msg);
+                messageViewer.Show();
             }
             catch (NullReferenceException ex)
             {
-                //clears the selected item in the listbox, will be hit if the combobox value is changed and an item is selected
+                // Causes crashed. Removed.
             }
-
         }
-
 
         private void messageListBox_Loaded(object sender, RoutedEventArgs e)
         {
-            refreshData("all"); //shows all messages by default
+            RefreshData("all"); // Show all messages at the start.
         }
 
-        //used to filter the listbox messages 
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        // Filter messages by type.
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             messageListBox.SelectedItem = null;
             ListBoxItem itm = (ListBoxItem)comboBox.SelectedValue;
             if (itm.Content.ToString() == "All")
             {
-                refreshData("all");
+                RefreshData("all");
             }
             else if (itm.Content.ToString() == "Tweets")
             {
-                refreshData("Tweet");
+                RefreshData("Tweet");
             }
             else if (itm.Content.ToString() == "Standard Emails")
             {
-                refreshData("Email");
+                RefreshData("Email");
             }
             else if (itm.Content.ToString() == "SIR Emails")
             {
-                refreshData("SIR");
+                RefreshData("SIR");
             }
             else if (itm.Content.ToString() == "SMS")
             {
-                refreshData("SMS");
+                RefreshData("SMS");
             }
         }
     }

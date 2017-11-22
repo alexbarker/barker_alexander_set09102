@@ -19,14 +19,14 @@ namespace euston_leisure_messages.Views
     /// <summary>
     /// SET09102 2017-8 TR1 001 - Software Engineering
     /// Euston Leisure Message System
-    /// Version 0.4.3
+    /// Version 0.5.0
     /// Alexander Barker 
     /// 40333139
     /// Created on 30th October 2017
-    /// Last Updated on 20th November 2017
+    /// Last Updated on 22th November 2017
     /// </summary>
     /// <summary>
-    /// AddTweet.xaml.cs - 
+    /// AddTweet.xaml.cs - This class is responsible for gathering and validating Tweet messages.
     /// </summary>
 
     public partial class AddTweet : Window
@@ -43,64 +43,65 @@ namespace euston_leisure_messages.Views
 
         private void Confirm_Tweet_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (validateInput())
+            if (ValidateTweet())
             {
-                string currentID = id.Text;
+                string currentID = id.Text; // Gets id from textbox. 
                 if (currentID.Length < 9)
                 {
+                    // Forces message ID to be 9 characters.
                     string zeros = String.Concat(Enumerable.Repeat("0", 9 - currentID.Length));
                     currentID = zeros + currentID;
 
                 }
-                currentID = "T" + currentID;
+                currentID = "T" + currentID; // Makes sure E is added to the message ID for email type.
 
+                // Creates Tweet objects to be used later.
                 Tweet tweet = new Tweet(currentID + " " + twitterHandle.Text + " " + twitterMessage.Text);
                 MessageHolder.currentTwitterID++;
-                MessageHolder.addMessage(currentID, tweet);
+                MessageHolder.AddMessage(currentID, tweet);
 
+                // Confirmation message for user.
+                MessageBox.Show("Tweet Added!\n" + "Message ID: " + currentID + "\nHandle: " + twitterHandle.Text + "\nMessage: " + twitterMessage.Text);
             }
         }
 
-        //validates the textboxes to ensure format meets the specification described in the
-        //initial documentation
-        private bool validateInput()
+        // Validates user input via textboxes.
+        private bool ValidateTweet()
         {           
-            bool canAdd = true;
+            bool checker = true;
             int parsedValue;
+
             if (!int.TryParse(id.Text, out parsedValue))
             {
-                MessageBox.Show("This is a number only field");
-                canAdd = false;
+                MessageBox.Show("Please enter numbers only!");
+                checker = false;
             }
             if (id.Text.Length > 9 || String.IsNullOrEmpty(id.Text))
             {
-                MessageBox.Show("Invalid id");
-                //errorLbl.Content += "Message cant be more than 140 characters " + Environment.NewLine;
-                canAdd = false;
+                MessageBox.Show("Invalid ID!");
+                checker = false;
             }
 
-            if (twitterHandle.Text.StartsWith("@")) //all twitter handles start with "@"
+            // Makes sure Twitter handles start with "@"
+            if (twitterHandle.Text.StartsWith("@")) 
             {
                 if (twitterHandle.Text.Length > 15 || String.IsNullOrEmpty(twitterHandle.Text))
                 {
-                    MessageBox.Show("Twitter handle be between 0 and 15 characters .");
-                    //errorLbl.Content += "Twitter handle be between 0 and 15 characters " + Environment.NewLine;
-                    canAdd = false;
+                    MessageBox.Show("Enter a valid Twitter handle! (15 characters)");
+                    checker = false;
                 }
             }
             else
             {
-                MessageBox.Show("Twitter handles must start with @ .");
-                //errorLbl.Content += "Twitter handles must start with @ " + Environment.NewLine;
-                canAdd = false;
+                MessageBox.Show("Twitter handles must start with @!");
+                checker = false;
             }
             if (twitterMessage.Text.Length > 140 || String.IsNullOrEmpty(twitterMessage.Text))
             {
-                MessageBox.Show("Message cant be more than 140 characters");
-                //errorLbl.Content += "Message cant be more than 140 characters " + Environment.NewLine;
-                canAdd = false;
+                MessageBox.Show("140 character limit breached!");
+                checker = false;
             }
-            return canAdd;
+            return checker;
 
         }
     }

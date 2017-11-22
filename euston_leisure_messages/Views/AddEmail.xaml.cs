@@ -20,14 +20,14 @@ namespace euston_leisure_messages.Views
     /// <summary>
     /// SET09102 2017-8 TR1 001 - Software Engineering
     /// Euston Leisure Message System
-    /// Version 0.4.5
+    /// Version 0.5.0
     /// Alexander Barker 
     /// 40333139
     /// Created on 30th October 2017
-    /// Last Updated on 20th November 2017
+    /// Last Updated on 22th November 2017
     /// </summary>
     /// <summary>
-    /// AddEmail.xaml.cs - 
+    /// AddEmail.xaml.cs - This class is responsible for collecting and storing user inputs for email type messages.
     /// </summary>
     
     public partial class AddEmail : Window
@@ -44,59 +44,62 @@ namespace euston_leisure_messages.Views
 
         private void Confirm_Email_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (validateInput())
+            if (ValidateEmail())
             {
-                string currentID = id.Text; //unique id for email
+                string currentID = id.Text; // Gets id from textbox.  
                 if (currentID.Length < 9)
                 {
-                    string zeros = String.Concat(Enumerable.Repeat("0", 9 - currentID.Length)); //padding for subject as spec states all subjects are to be 20 characters
+                    // Forces message ID to be 9 characters.
+                    string zeros = String.Concat(Enumerable.Repeat("0", 9 - currentID.Length));
                     currentID = zeros + currentID;
-
                 }
-                currentID = "E" + currentID;
 
+                currentID = "E" + currentID; // Makes sure E is added to the message ID for email type.
+
+                // Creates email objects to be used later.
                 Email email = new Email(currentID + " " + emailTextbox.Text + " " + subjectTextbox.Text + " " + messageTextbox.Text);
                 MessageHolder.currentEmailID++;
-                MessageHolder.addMessage(currentID, email);
-            }
+                MessageHolder.AddMessage(currentID, email);
 
+                // Confirmation message for user.
+                MessageBox.Show("Email Added!\n" + "Message ID: " + currentID + "\nEmail: " + emailTextbox.Text + "\nSubject: " + subjectTextbox.Text + "\nMessage: " + messageTextbox.Text);
+            }
         }
 
-        //validates input according to initial specification before sending
-        private bool validateInput()
+        // Validates user input via textboxes.
+        private bool ValidateEmail()
         {
             string pattern = @"[!#$%&'\\*\\+\\-\\/\\=\\?\\^\\_`\\{\\|\\}\\~\\+a-zA-Z0-9\\.]+@.*?[a-zA-Z0-9\\.]+";
             Regex re = new Regex(pattern);
             Match m = Regex.Match(emailTextbox.Text, pattern);
-            bool canAdd = true;
+            bool checker = true;
 
             int parsedValue;
             if (!int.TryParse(id.Text, out parsedValue))
             {
-                MessageBox.Show("This is a number only field");
-                canAdd = false;
+                MessageBox.Show("Please enter numbers only!");
+                checker = false;
             }
             if (id.Text.Length > 9 || String.IsNullOrEmpty(id.Text))
             {
-                MessageBox.Show("Invalid id");
-                canAdd = false;
+                MessageBox.Show("Invalid ID!");
+                checker = false;
             }
 
             if (!m.Success)
             {
-                MessageBox.Show("Invalid email address ");
-                canAdd = false;
+                MessageBox.Show("Invalid email address!");
+                checker = false;
             }
-
             if (subjectTextbox.Text.Length >= 20)
             {
-                MessageBox.Show("Subject must be less than 20 characters  ");
-                canAdd = false;
+                MessageBox.Show("Subject must be less than 20 characters!");
+                checker = false;
             }
             else if (String.IsNullOrEmpty(subjectTextbox.Text))
             {
-                MessageBox.Show("Please enter a subject ");
-                canAdd = false;
+                MessageBox.Show("Please enter a subject!");
+                checker = false;
             }
             else if (subjectTextbox.Text.Length < 20)
             {
@@ -104,15 +107,15 @@ namespace euston_leisure_messages.Views
             }
             if (messageTextbox.Text.Length >= 1028)
             {
-                MessageBox.Show("Message too long (1028 characters max) ");
-                canAdd = false;
+                MessageBox.Show("Message too long! (1028 maximum)");
+                checker = false;
             }
             else if (string.IsNullOrEmpty(messageTextbox.Text))
             {
-                MessageBox.Show("Please enter a message  ");
-                canAdd = false;
+                MessageBox.Show("Please enter a message!");
+                checker = false;
             }
-            return canAdd;
+            return checker;
         }
     }
 }

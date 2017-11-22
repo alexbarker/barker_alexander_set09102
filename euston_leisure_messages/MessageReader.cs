@@ -13,14 +13,14 @@ namespace euston_leisure_messages
     /// <summary>
     /// SET09102 2017-8 TR1 001 - Software Engineering
     /// Euston Leisure Message System
-    /// Version 0.4.4
+    /// Version 0.5.0
     /// Alexander Barker 
     /// 40333139
     /// Created on 30th October 2017
-    /// Last Updated on 20th November 2017
+    /// Last Updated on 22th November 2017
     /// </summary>
     /// <summary>
-    /// MessageReader.cs - 
+    /// MessageReader.cs - This class get the header and body objects from Json file.
     /// </summary>
 
     public class MessageReader
@@ -33,25 +33,23 @@ namespace euston_leisure_messages
 
         }
 
-        /// MessageProcessor is used to write out to the JSON file so the varables must match the JSON format
-        /// <param name="h">message header</param>
-        /// <param name="b">message body</param>
+        /// Used to read from the Json file.
+        /// <param name="h"> Message header.</param>
+        /// <param name="b"> Message body.</param>
         public MessageReader(string h, string b)
         {
             this.header = h;
             this.body = b;
         }
 
-        /// selects the correct message type for the message being passed in(in text format)
-        /// <param name="messageIn">message string</param>
-        public Message convertMessage(String messageIn)
+        /// Selector based on message type.
+        /// <param name="messageIn"> Message from user.</param>
+        public Message ConvertMessage(String messageIn)
         {
             if (messageIn.StartsWith("E"))
             {
-                if (getEmailType(messageIn) == "SIR")
+                if (GetEmailType(messageIn) == "SIR")
                 {
-
-
                     return new SIR(messageIn);
                 }
                 else
@@ -69,23 +67,20 @@ namespace euston_leisure_messages
             }
             else
             {
-                //MessageBox.Show("Invalid input " + messageIn);
                 return null;
             }
         }
 
-        /// returns the message after convertion
-        public Message loadMessage()
+        /// Makes message available after conversion.
+        public Message LoadMessage()
         {
-            Message msg = convertMessage(this.header + " " + this.body);
-            //MessageBox.Show("123 " + msg);
+            Message msg = ConvertMessage(this.header + " " + this.body);
             return msg;
         }
 
-        /// Used to seperate SIR emails and standard emails
-        /// works by finding the subject and checking for "SIR"
-        /// <param name="messageIn">message string</param>
-        private string getEmailType(string messageIn)
+        /// Seperates normal Email from SIR.
+        /// <param name="messageIn"> Message body.</param>
+        private string GetEmailType(string messageIn)
         {
             string messageID = messageIn.Substring(0, 10);
             messageIn = messageIn.Substring(11);
@@ -101,7 +96,5 @@ namespace euston_leisure_messages
                 return "Email";
             }
         }
-
-
     }
 }

@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:euston_leisure_messages"
         mc:Ignorable="d"
         Title="MessageViewer" Height="451.786" Width="496.173">
-    <Grid Margin="0,0,-16,9">
-        <ListBox x:Name="messageListBox" HorizontalAlignment="Left" Height="275" Margin="10,105,0,-15" VerticalAlignment="Top" Width="461" SelectionChanged="messageListBox_SelectionChanged" Loaded="messageListBox_Loaded"/>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="283,63,0,0" VerticalAlignment="Top" Width="188" Height="29" SelectionChanged="comboBox_SelectionChanged" SelectedIndex="0">
+    <Grid Margin="0,0,-16,-5" Background="#FFE6E8EE">
+        <ListBox x:Name="messageListBox" HorizontalAlignment="Left" Height="275" Margin="10,105,0,-15" VerticalAlignment="Top" Width="461" SelectionChanged="MessageListBox_SelectionChanged" Loaded="messageListBox_Loaded"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="283,63,0,0" VerticalAlignment="Top" Width="188" Height="29" SelectionChanged="ComboBox_SelectionChanged" SelectedIndex="0">
             <ListBoxItem Content="Choose Type" FontWeight="Bold"/>
             <ListBoxItem Content="All" IsSelected="True" FontWeight="Bold"/>
             <ListBoxItem Content="SMS" FontWeight="Bold"/>

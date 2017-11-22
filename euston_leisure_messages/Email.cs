@@ -13,50 +13,52 @@ namespace euston_leisure_messages
     /// <summary>
     /// SET09102 2017-8 TR1 001 - Software Engineering
     /// Euston Leisure Message System
-    /// Version 0.4.5
+    /// Version 0.5.0
     /// Alexander Barker 
     /// 40333139
     /// Created on 30th October 2017
-    /// Last Updated on 20th November 2017
+    /// Last Updated on 22th November 2017
     /// </summary>
     /// <summary>
-    /// Email.cs - 
+    /// Email.cs - This class is used to process, store and validate Email messages.
     /// </summary>
 
     public class Email : Message
     {
-        public string subject { get; set; }
-        /// constructor for creating and validating email messages
-        /// <param name="messageIn">raw string message</param>
-        public Email(string messageIn)
+        public string Subject { get; set; }
+        /// Creates and validates Email messages.
+        /// <param name="currentMessage">Creates an email string.</param>
+        public Email(string currentMessage)
         {
-            messageIn = messageIn.Replace(Environment.NewLine, " ");
-            //reg ex returns 0-full message 1-message id 2-email address of sender 3-subject 4-message body
+            currentMessage = currentMessage.Replace(Environment.NewLine, " ");
+            // 0 - Whole message. 
+            // 1 - Message ID. 
+            // 2 - Email address.
+            // 3 - Subject. 
+            // 4 - Message body.
             Regex regex = new Regex(@"(E\d{9}) ([!#$%&'\\*\\+\\-\\/\\=\\?\\^\\_`\\{\\|\\}\\~\\+a-zA-Z0-9\\.]+@.*?[a-zA-Z0-9\\.]+) (.{20}) (.+)");
-            Match match = regex.Match(messageIn);
+            Match match = regex.Match(currentMessage);
             if (match.Success)
             {
-                if (validateInput(match.Groups[2].ToString(), match.Groups[3].ToString(), match.Groups[4].ToString()))
+                if (ValidateEmail(match.Groups[2].ToString(), match.Groups[3].ToString(), match.Groups[4].ToString()))
                 {
                     this.messageID = match.Groups[1].ToString();
-                    //this.seen = false;
                     this.sender = match.Groups[2].ToString();
-                    this.subject = match.Groups[3].ToString();
+                    this.Subject = match.Groups[3].ToString();
                     this.messageBody = match.Groups[4].ToString();
                     bool hasChanged = true;
 
                     while (hasChanged)
                     {
-                        //checks for website URL's in message body
+                        // Detects URLs.
                         regex = new Regex(@"\S+\.\S+");
                         match = regex.Match(this.messageBody);
-
 
                         if (match.Success)
                         {
                             foreach (Match g in match.Groups)
                             {
-                                //checks if URL already exists in the quarantine list
+                                // Checks URL list for duplicates.
                                 if (MessageHolder.quarantined.ContainsKey(g.ToString()))
                                 {
                                     MessageHolder.quarantined[g.ToString()] = (Convert.ToInt32(MessageHolder.quarantined[g.ToString()]) + 1).ToString();
@@ -65,7 +67,7 @@ namespace euston_leisure_messages
                                 {
                                     MessageHolder.quarantined.Add(g.ToString(), "1");
                                 }
-                                MessageHolder.updateQuarantinedItems();
+                                MessageHolder.UpdateURLs();
                                 this.messageBody = this.messageBody.Replace(g.ToString(), "<<Quarantined Link>>");
                             }
                         }
@@ -75,20 +77,18 @@ namespace euston_leisure_messages
                         }
                     }
                 }
-
             }
             else
             {
                 throw new ArgumentException("Invalid input");
             }
-
         }
 
-        /// method used to make sure emails meet the standards in the requirement specification
-        /// <param name="sender">email address of sender</param>
-        /// <param name="subject">subject of the email.</param>
-        /// <param name="body">message body of the email.</param>
-        public bool validateInput(string sender, string subject, string body)
+        /// Makes sure email is in the correct format
+        /// <param name="sender">Email address.</param>
+        /// <param name="subject">Subject.</param>
+        /// <param name="body">Message text.</param>
+        public bool ValidateEmail(string sender, string subject, string body)
         {
             if (sender.Length > 0 && subject.Length == 20 && body.Length < 1029)
             {
@@ -96,10 +96,11 @@ namespace euston_leisure_messages
             }
             return false;
         }
-        /// method used concatenate the string for JSON output
+
+        /// Formats output for Json file.
         public override MessageReader returnData()
         {
-            return new MessageReader(this.messageID, this.sender + " " + this.subject + " " + this.messageBody);
+            return new MessageReader(this.messageID, this.sender + " " + this.Subject + " " + this.messageBody);
         }
     }
 }

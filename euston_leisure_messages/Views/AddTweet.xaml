@@ -6,15 +6,15 @@
         xmlns:local="clr-namespace:euston_leisure_messages.Views"
         mc:Ignorable="d"
         Title="AddTweet" Height="390" Width="308">
-    <Grid>
+    <Grid Background="#FFC3F1F3">
         <Label Content="Twitter ID" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top" Width="121" FontWeight="Bold"/>
-        <TextBox Name="twitterHandle" HorizontalAlignment="Left" Height="23" Margin="10,118,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150"/>
+        <TextBox Name="twitterHandle" HorizontalAlignment="Left" Height="23" Margin="10,118,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
         <Label Content="Message" HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top" Width="121" FontWeight="Bold"/>
-        <TextBox Name="twitterMessage" HorizontalAlignment="Left" Height="125" Margin="10,173,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="272"/>
+        <TextBox Name="twitterMessage" HorizontalAlignment="Left" Height="125" Margin="10,173,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="272"/>
         <Button Content="Confirm" HorizontalAlignment="Left" Margin="10,311,0,0" VerticalAlignment="Top" Width="100" Height="30" Background="#FFC8D9EA" FontWeight="Bold" Click="Confirm_Tweet_Button_Click"/>
         <Button Content="Close" HorizontalAlignment="Left" Margin="182,311,0,0" VerticalAlignment="Top" Width="100" Height="30" Background="#FFC8D9EA" FontWeight="Bold" Click="Close_Tweet_Button_Click"/>
         <Label Content="Message ID" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Width="121" FontWeight="Bold"/>
-        <TextBox Name="id" HorizontalAlignment="Left" Height="23" Margin="35,69,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="206"/>
+        <TextBox Name="id" HorizontalAlignment="Left" Height="23" Margin="35,69,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="206"/>
         <Label Content="T" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" Width="20" FontWeight="Bold"/>
 
     </Grid>

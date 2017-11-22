@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:euston_leisure_messages"
         mc:Ignorable="d"
         Title="Euston Leisure Messages" Height="418.627" Width="759.857">
-    <Grid x:Name="Main_Screen" HorizontalAlignment="Left" Width="751">
+    <Grid x:Name="Main_Screen" HorizontalAlignment="Left" Width="751" Background="#FFE6E8EE">
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="40" Margin="21,58,0,0" VerticalAlignment="Top" Width="129"/>
 
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="40" Margin="21,58,0,0" VerticalAlignment="Top" Width="308"/>
@@ -15,7 +15,7 @@
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="40" Margin="-1,-1,-1,0" VerticalAlignment="Top" Width="130"/>
         </Border>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="50" Margin="607,324,0,0" VerticalAlignment="Top" Width="130"/>
-        <Button Content="Load" HorizontalAlignment="Left" Margin="189,113,0,0" VerticalAlignment="Top" Width="100" Height="30" Background="#FFC8D9EA" FontWeight="Bold" Click="View_SMS_Button_Click"/>
+        <Button Content="Load" HorizontalAlignment="Left" Margin="189,113,0,0" VerticalAlignment="Top" Width="100" Height="30" Background="#FFC8D9EA" FontWeight="Bold" Click="Load_Button_Click"/>
         <Label Content="View Message" HorizontalAlignment="Left" Height="35" Margin="27,112,0,0" VerticalAlignment="Top" Width="122" FontWeight="Bold" FontSize="16"/>
         <Button x:Name="buttonExit" Content="Exit" HorizontalAlignment="Left" Margin="622,334,0,0" VerticalAlignment="Top" Width="100" Height="30" Background="#FFC8D9EA" Click="Exit_Button_Click" FontWeight="Bold"/>
         <Label Content="Euston Leisure Message System" HorizontalAlignment="Left" Height="35" Margin="14,12,0,0" VerticalAlignment="Top" Width="336" FontWeight="Bold" FontSize="18" FontFamily="Cooper Black"/>

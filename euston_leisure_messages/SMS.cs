@@ -11,22 +11,22 @@ namespace euston_leisure_messages
     /// <summary>
     /// SET09102 2017-8 TR1 001 - Software Engineering
     /// Euston Leisure Message System
-    /// Version 0.4.4
+    /// Version 0.5.0
     /// Alexander Barker 
     /// 40333139
     /// Created on 30th October 2017
-    /// Last Updated on 20th November 2017
+    /// Last Updated on 22th November 2017
     /// </summary>
     /// <summary>
-    /// SMS.cs - 
+    /// SMS.cs - This class is responsible for validating and storing SMS messages.
     /// </summary>
 
     public class SMS : Message
     {
         /// <summary>
-        /// validates and adds new SMS messages if possible
+        /// SMS validation, adds to dictionary.
         /// </summary>
-        /// <param name="messageIn"></param>
+        /// <param name="messageIn">Messsage body.</param>
         public SMS(String messageIn)
         {
             Regex re = new Regex(@"(S\d{9}) (\+[0-9]+) (.+)");
@@ -41,18 +41,18 @@ namespace euston_leisure_messages
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid input for SMS");
+                    throw new ArgumentException("Invalid input for SMS!");
                 }
 
             }
             else
             {
-                throw new ArgumentException("Invalid input for SMS");
+                throw new ArgumentException("Invalid input for SMS!");
             }
         }
 
         /// <summary>
-        /// returns string message format for JSON file writing
+        /// Formats message for Json file.
         /// </summary>
         /// <returns></returns>
         public override MessageReader returnData()

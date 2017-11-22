@@ -10,37 +10,35 @@ namespace euston_leisure_messages
     /// <summary>
     /// SET09102 2017-8 TR1 001 - Software Engineering
     /// Euston Leisure Message System
-    /// Version 0.4.4
+    /// Version 0.5.0
     /// Alexander Barker 
     /// 40333139
     /// Created on 30th October 2017
-    /// Last Updated on 20th November 2017
+    /// Last Updated on 22th November 2017
     /// </summary>
     /// <summary>
-    /// MessageRefresher.cs - 
+    /// MessageRefresher.cs - This class is responsible for refreshing the page when new messages are added.
     /// </summary>
 
     public class MessageRefresher
     {
-        public List<Observer> observers { get; set; } //windows to notify of changes
-        public int numberOfMessages { get; set; } //number of read messages, subtract from total messages to find notification number
-        private static MessageRefresher instance; //singleton static variable to make sure only one instance can occur
+        public List<INotifier> Notifier { get; set; }
+        public int NumberOfMessages { get; set; } 
+        private static MessageRefresher instance; 
 
         private MessageRefresher()
         {
-            this.observers = new List<Observer>();
-            refreshMessages();
+            this.Notifier = new List<INotifier>();
+            RefreshMessages();
         }
 
-        /// increments the number of seen messages and notifies any windows registered
-        public void addNewSeen()
+        public void AddNewSeen()
         {
-            instance.numberOfMessages++;
-            instance.notifyObservers();
+            instance.NumberOfMessages++;
+            instance.Notify();
         }
 
-        //singleton pattern 
-        public static MessageRefresher getInstance()
+        public static MessageRefresher GetInstance()
         {
             if (instance == null)
             {
@@ -49,8 +47,8 @@ namespace euston_leisure_messages
             return instance;
         }
 
-        /// timer used to check for new messages, checks every 5 seconds
-        private void refreshMessages()
+        /// Timer used to refresh messages.
+        private void RefreshMessages()
         {
             Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
@@ -58,28 +56,26 @@ namespace euston_leisure_messages
             aTimer.Enabled = true;
         }
 
-        //register a class requiring notification of updates to messages
-        /// <param name="win">observer to add to list</param>
-        public void addObserver(Observer win)
+        public void AddNotifier(INotifier win)
         {
-            observers.Add(win);
+            Notifier.Add(win);
         }
 
-        /// notify class that a change has occurred 
-        private void notifyObservers()
+        /// Notify that a change has occurred.
+        private void Notify()
         {
-            foreach (Observer o in observers)
+            foreach (INotifier n in Notifier)
             {
-                o.receiveNotification();
+                n.Notification();
             }
         }
 
-        //check if seen messages is less than total number of messages, if so notify observers
+        // Checks number of messages.
         private void OnTimedEvent(object source, ElapsedEventArgs e)
         {
-            if (MessageHolder.messages.Count > numberOfMessages)
+            if (MessageHolder.messages.Count > NumberOfMessages)
             {
-                notifyObservers();
+                Notify();
             }
         }
     }

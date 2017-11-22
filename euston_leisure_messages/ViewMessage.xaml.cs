@@ -15,41 +15,50 @@ using System.Windows.Shapes;
 namespace euston_leisure_messages
 {
     /// <summary>
-    /// Interaction logic for ViewMessage.xaml
+    /// SET09102 2017-8 TR1 001 - Software Engineering
+    /// Euston Leisure Message System
+    /// Version 0.5.0
+    /// Alexander Barker 
+    /// 40333139
+    /// Created on 30th October 2017
+    /// Last Updated on 22th November 2017
     /// </summary>
+    /// <summary>
+    /// ViewMessage.cs - This class displays an individual message inside the current window.
+    /// </summary>
+    
     public partial class ViewMessage : Window
     {
         /// <summary>
-        /// shows the message details inside this window
+        /// Displays message inside a textbox.
         /// </summary>
-        /// <param name="M"></param>
-        public ViewMessage(string M)
+        /// <param name="m1">Message body.</param>
+        public ViewMessage(string m1)
         {
             InitializeComponent();
-            getFrameData(M);
+            CreateBox(m1);
         }
         /// <summary>
-        /// can add pages 
+        /// Add the new view as a page.
         /// </summary>
-        /// <param name="pageIN">the page to be added to this window</param>
-        public ViewMessage(Page pageIN)
+        /// <param name="addBox">Add the box that displays message.</param>
+        public ViewMessage(Page addBox)
         {
             InitializeComponent();
-            this.Content = pageIN;
+            this.Content = addBox;
         }
 
         /// <summary>
-        /// sets message status to seen if not already
+        /// Talks to the refresher.
         /// </summary>
-        /// <param name="m"></param>
-        public void getFrameData(string m)
+        /// <param name="m">Message body</param>
+        public void CreateBox(string m)
         {
-            MessageHolder.refresher.addNewSeen();
+            MessageHolder.refresher.AddNewSeen();
             
-                Page gen = new MessageReaderViewer(MessageHolder.messages[m]);
-                frame.Content = gen;
-            }
-        }
-
-    }
+                Page display = new MessageReaderViewer(MessageHolder.messages[m]);
+                frame.Content = display;
+         }
+     }
+}
 

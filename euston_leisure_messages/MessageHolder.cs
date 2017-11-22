@@ -13,114 +13,69 @@ namespace euston_leisure_messages
     /// <summary>
     /// SET09102 2017-8 TR1 001 - Software Engineering
     /// Euston Leisure Message System
-    /// Version 0.4.5
+    /// Version 0.5.0
     /// Alexander Barker 
     /// 40333139
     /// Created on 30th October 2017
-    /// Last Updated on 20th November 2017
+    /// Last Updated on 22th November 2017
     /// </summary>
     /// <summary>
-    /// MessageHolder.cs - 
+    /// MessageHolder.cs - Stores all aspects of a message in the correct data structures.
     /// </summary>
 
     public static class MessageHolder
     {
-        private static Json js = new Json(); //json reader object
-        public static Dictionary<string, Message> messages = new Dictionary<string, Message>(); //holds all the messages for the application, messageID is the key
-        public static int currentEmailID; //current highest email id, used for incrementing on new messages being input
-        public static int currentTwitterID; //current highest twitter id, used for incrementing on new messages being input
-        public static int currentSMSID; //current highest SMS id, used for incrementing on new messages being input
+        private static Json js = new Json(); // Json object.
+        public static Dictionary<string, Message> messages = new Dictionary<string, Message>(); // Holds all the messages.
+        public static int currentEmailID; // Used to sort email messages.
+        public static int currentTwitterID; // Used to sort Twitter messages.
+        public static int currentSMSID; // Used to dort SMS messages.
 
-        //different incident types for SIR emails(may require updating if new incident types arise)
+        // Hold all the different incident type strings.
+        public static Dictionary<string, string> SIRcodes = new Dictionary<string, string>(); // Stores Centre Codes for list output.
+        public static Dictionary<string, string> SIRincidents = new Dictionary<string, string>(); // Stores Incident Type for list output.
         public static string[] incidentTypes = { "Theft of Properties", "Staff Attack", "Device Damage", "Raid", "Customer Attack", "Staff Abuse", "Bomb Threat", "Terrorism", "Suspicious Incident", "Sport Injury", "Personal Info Leak" };
-        public static MessageRefresher refresher = MessageRefresher.getInstance(); //loop checks for new messages
-        public static Dictionary<string, string> textspeak = new Dictionary<string, string>(); //abbreviation dictionary
-        public static Dictionary<string, string> quarantined = new Dictionary<string, string>(); //quarantined URLs
-        public static Dictionary<string, List<string>> mentions = new Dictionary<string, List<String>>(); //mentions is tweets
-        public static CSVReader r = new CSVReader();
-        public static Dictionary<string, string> SIRcodes = new Dictionary<string, string>();
-        public static Dictionary<string, string> SIRincidents = new Dictionary<string, string>();
+        public static MessageRefresher refresher = MessageRefresher.GetInstance(); // Checks for new messages.
+        public static Dictionary<string, string> textspeak = new Dictionary<string, string>(); // Textspeak abbrieviations.
+        public static Dictionary<string, string> quarantined = new Dictionary<string, string>(); // Quarantined URLs
+        public static Dictionary<string, List<string>> mentions = new Dictionary<string, List<String>>(); // Stores all the mentions.
+        public static CSVReader r = new CSVReader(); // CSV object.
 
         //populates the variables in this class when the application starts
-        public static void readMessages()
+        public static void ReadMessages()
         {
-            getTextspeak();
-            getQuarantinedItems();
+            GetTextspeak();
+            GetURLs();
             js.fileName = ".\\allMessages.json";
-            messages = js.readJSON();
-            //setCurrentIDS();
-            refresher.numberOfMessages = messages.Count;
-            
+            messages = js.ReadJSON();
+            refresher.NumberOfMessages = messages.Count;          
         }
 
-        public static void getTextspeak()
+        public static void GetTextspeak()
         {
             string path = ".\\textwords.csv";
-            textspeak = r.readFile(path);
+            textspeak = r.ReadFile(path);
         }
-         /*
-        public static void updateTextspeak()
-        {
-            string path = Properties.Settings.Default.Textwords;
-            r.overwriteFile(path, textspeak);
-        }
-        */
         
-        public static void getQuarantinedItems()
+        public static void GetURLs()
         {
             string path = ".\\quarantined.csv";
-            quarantined = r.readFile(path);
+            quarantined = r.ReadFile(path);
         }
 
-        public static void updateQuarantinedItems()
+        public static void UpdateURLs()
         {
             string path = ".\\quarantined.csv";
-            r.overwriteFile(path, quarantined);
+            r.OverwriteFile(path, quarantined);
         }
         
-        //when new messages are added use this method
-        /// <param name="id">new message id to add to the dictionary</param>
-        /// <param name="m">message data to be added</param>
-        public static void addMessage(string id, Message m)
+        // Adds new messages to be written to Json file.
+        /// <param name="id"> Message ID.</param>
+        /// <param name="m"> Message body.</param>
+        public static void AddMessage(string id, Message m)
         {
             messages.Add(id, m);
-            js.writeData();
-            //setCurrentIDS(); //increments the ids
-        }
-
-        /*
-        //gets the current highest id used for emails, sms and tweets 
-        //used to maintain unique references for messages
-        public static void setCurrentIDS()
-        {
-            foreach (string s in messages.Keys)
-            {
-                int tempVal;
-                Int32.TryParse(s.Substring(1, 9), out tempVal);
-                if (s.StartsWith("E"))
-                {
-                    if (tempVal > currentEmailID)
-                    {
-                        currentEmailID = tempVal;
-                    }
-                }
-                else if (s.StartsWith("S"))
-                {
-                    if (tempVal > currentSMSID)
-                    {
-                        currentSMSID = tempVal;
-                    }
-                }
-                else if (s.StartsWith("T"))
-                {
-                    if (tempVal > currentTwitterID)
-                    {
-                        currentTwitterID = tempVal;
-                    }
-                }
-            }
-        }*/
-        
-
+            js.WriteData();
+        }  
     }
 }

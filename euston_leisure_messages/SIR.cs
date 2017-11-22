@@ -12,53 +12,46 @@ namespace euston_leisure_messages
     /// <summary>
     /// SET09102 2017-8 TR1 001 - Software Engineering
     /// Euston Leisure Message System
-    /// Version 0.4.4
+    /// Version 0.5.0
     /// Alexander Barker 
     /// 40333139
     /// Created on 30th October 2017
-    /// Last Updated on 20th November 2017
+    /// Last Updated on 22th November 2017
     /// </summary>
     /// <summary>
-    /// SIR.cs - 
+    /// SIR.cs - This class is used to process, store and validate SIR Email messages.
     /// </summary>
 
     public class SIR : Email
     {
-        public DateTime dateReported { get; set; }
         public string natureOfIncident { get; set; }
-        public string centCode { get; set; }       
+        public string centCode { get; set; }
+        public string dateReported { get; set; }     
 
         /// <summary>
-        /// uses the email class to perform normal translation to email then validates sort code, incident type
-        /// date reported etc
+        /// Validates Centre Code and Incident Type.
         /// </summary>
-        /// <param name="messageIn">raw message string</param>
+        /// <param name="messageIn"> Message body.</param>
         public SIR(string messageIn) : base(messageIn)
         {
-            DateTime reportDate;
-            DateTime.TryParse(this.subject.Substring(4, 8), out reportDate);
-            this.dateReported = reportDate;
-            Regex regex = new Regex(@"Cent Code: ([0-9-]+)"); //finds the sort code in the message body
+            Regex regex = new Regex(@"Cent Code: ([0-9-]+)"); // Searches message body for centre code.
             Match match = regex.Match(messageIn);
             if (match.Success)
             {
                 this.centCode = match.Groups[1].Value;
-                MessageHolder.SIRcodes.Add(messageID, centCode);
-                //MessageHolder.SIRcodes.Add(messageID, sortCode);
-                //MessageHolder.SIRincidents.Add(messageID, incident);
+                MessageHolder.SIRcodes.Add(messageID, centCode); // Adds the code to a dictionary for SIR list display.
             }
             else
             {
-                throw new ArgumentException("no centre code found");
+                throw new ArgumentException("Centre Code not found!");
             }
 
-
-            regex = new Regex(@"Nature of Incident: (.+)"); //finds the incident type in the message body
+            regex = new Regex(@"Nature of Incident: (.+)"); // Searches message body for incident type.
             match = regex.Match(messageIn);
             if (match.Success)
             {
                 string nature = match.Groups[1].ToString();
-                foreach (string n in MessageHolder.incidentTypes) //checks if incident type exists in the current array of types
+                foreach (string n in MessageHolder.incidentTypes) // Confirms incident type exists.
                 {
                     if (nature.StartsWith(n))
                     {
@@ -70,10 +63,19 @@ namespace euston_leisure_messages
             }
             else
             {
-                throw new ArgumentException("no matching incident found");
+                throw new ArgumentException("Incident Type not found!");
             }
 
-
+            regex = new Regex(@"SIR (.+)"); // Searches message body for report date.
+            match = regex.Match(messageIn);
+                if (match.Success)
+                {
+                dateReported = match.Groups[1].Value;
+                }
+                else
+                {
+                    throw new ArgumentException("Date not found!");
+                }
         }
     }
 }

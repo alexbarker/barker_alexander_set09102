@@ -69,7 +69,7 @@
     <Compile Include="MessageViewer.xaml.cs">
       <DependentUpon>MessageViewer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Observer.cs" />
+    <Compile Include="Notifier.cs" />
     <Compile Include="SIR.cs" />
     <Compile Include="SMS.cs" />
     <Compile Include="Tweet.cs" />

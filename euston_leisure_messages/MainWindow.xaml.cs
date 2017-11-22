@@ -20,14 +20,14 @@ namespace euston_leisure_messages
     /// <summary>
     /// SET09102 2017-8 TR1 001 - Software Engineering
     /// Euston Leisure Message System
-    /// Version 0.4.3
+    /// Version 0.5.0
     /// Alexander Barker 
     /// 40333139
     /// Created on 30th October 2017
-    /// Last Updated on 20th November 2017
+    /// Last Updated on 22th November 2017
     /// </summary>
     /// <summary>
-    /// MainWindow.xaml.cs - 
+    /// MainWindow.xaml.cs - This class is the main window of the application. Processes all user inputs via button or drop-down lists.
     /// </summary>
 
     public partial class MainWindow : Window
@@ -35,7 +35,7 @@ namespace euston_leisure_messages
         public MainWindow()
         {
             InitializeComponent();
-            MessageHolder.readMessages();
+            MessageHolder.ReadMessages();
         }
 
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
@@ -67,28 +67,10 @@ namespace euston_leisure_messages
             }
         }
 
-        private void View_SMS_Button_Click(object sender, RoutedEventArgs e)
+        private void Load_Button_Click(object sender, RoutedEventArgs e)
         {
-             Window win = new MessageViewer();
-             win.Show();
-            
-            //MessageReaderViewer.loadContent();
-
-        }
-
-        private void View_Email_Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void View_SIR_Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        public void View_Tweet_Button_Click(object sender, RoutedEventArgs e)
-        {
-
+             Window window = new MessageViewer();
+             window.Show();          
         }
 
         private void Trending_List_Button_Click(object sender, RoutedEventArgs e)
@@ -99,11 +81,9 @@ namespace euston_leisure_messages
             var values = from pair in MessageHolder.mentions orderby pair.Value.Count descending select pair.Key.ToString();
             foreach (string v in values)
             {
-                if (v.StartsWith("#")) //dont want to also add "mentions" (@ symbol) 
+                if (v.StartsWith("#"))
                 {
                     viewList.Items.Add("Rank: " + x + " - " + v);
-                    //viewList.Text = v;
-                    //viewList.Text = "\n";
                     x++;
                 }
             }
@@ -116,7 +96,6 @@ namespace euston_leisure_messages
 
             foreach (string h in MessageHolder.mentions.Keys)
             {
-                //if (MessageHolder.mentions[h].Contains("@"))
                 if (h.StartsWith("@"))
                 {
                     viewList.Items.Add(h);
@@ -128,30 +107,31 @@ namespace euston_leisure_messages
         {
             viewList.Items.Clear();
             viewList.Items.Add("SIR List\n");
-            int x = 1;
-            int y = 1;
+            int x = 0;
+            int y = 0;
+            int z = MessageHolder.SIRcodes.Count;
+            string[] pp = new string[z];
+            string[] qq = new string[z];
 
             foreach (string p in MessageHolder.SIRcodes.Values)
             {
-                //if (MessageHolder.mentions[h].Contains("@"))
-                //if (p.Contains(" "))
-                // {
-                
-                viewList.Items.Add(x + " - Centre Code: " + p);
+                pp[x] = p;
                 x++;
-                // }
             }
 
             viewList.Items.Add("------------------------------------");
 
             foreach (string a in MessageHolder.SIRincidents.Values)
             {
-                //if (MessageHolder.mentions[h].Contains("@"))
-                //if (p.Contains(" "))
-                // {
-                viewList.Items.Add(y + " - Incident: " + a);
+                qq[y] = a;
                 y++;
-                // }
+            }
+
+            for (int i = 0; i < z; i++)
+            {
+                viewList.Items.Add("Centre Code: " + pp[i]);
+                viewList.Items.Add("Incident: " + qq[i]);
+                viewList.Items.Add("------------------------------------");
             }
         }
 
@@ -164,21 +144,6 @@ namespace euston_leisure_messages
             {
                 viewList.Items.Add(s);
             }
-        }
-
-        private void Back_Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Next_Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Sanitize_Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

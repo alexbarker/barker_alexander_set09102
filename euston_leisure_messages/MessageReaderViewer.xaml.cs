@@ -16,32 +16,44 @@ using System.Windows.Shapes;
 namespace euston_leisure_messages
 {
     /// <summary>
-    /// Interaction logic for MessageReaderViewer.xaml
+    /// SET09102 2017-8 TR1 001 - Software Engineering
+    /// Euston Leisure Message System
+    /// Version 0.5.0
+    /// Alexander Barker 
+    /// 40333139
+    /// Created on 30th October 2017
+    /// Last Updated on 22th November 2017
     /// </summary>
+    /// <summary>
+    /// MessageReaderViewer.cs - This class outputs the message data to a viewer window.
+    /// </summary>
+    
     public partial class MessageReaderViewer : Page
     {
 
         public MessageReaderViewer(Message m)
         {
             InitializeComponent();
-            loadContent(m);
+            LoadContent(m);
         }
 
-        /// used to load the data inside the page 
-        /// <param name="m">Message to be viewed</param>
-        public void loadContent(Message m)
+        /// Displays data to the window.
+        /// <param name="m"> Message to be displayed.</param>
+        public void LoadContent(Message m)
         {
-            //shows SIR email data
+            // SIR Email.
             if (m is SIR)
             {
                 SIR message = (SIR)m;
                 messageLabel.Content += "Sender: ";
-                messageLabel.Content += message.sender + Environment.NewLine;
-                messageLabel.Content += "Date reported: ";
-                messageLabel.Content += message.dateReported.ToString("dd/MM/yy") + Environment.NewLine;
-                messageLabel.Content += "Sort code: ";
+                string s = message.sender;
+                string[] words = s.Split(' ');
+                messageLabel.Content += words[0] + Environment.NewLine;
+                messageLabel.Content += "Date Reported: ";
+                messageLabel.Content += message.dateReported.Substring(0, 8) + Environment.NewLine;
+                messageLabel.Content += "Centre Code: ";
                 messageLabel.Content += message.centCode + Environment.NewLine;
-                messageLabel.Content += "Nature of incident: ";
+                messageLabel.Content += "Incident Type: ";
                 messageLabel.Content += message.natureOfIncident + Environment.NewLine;
                 messageLabel.Content += " " + Environment.NewLine;
                 messageLabel.Content += " " + Environment.NewLine;
@@ -49,14 +61,14 @@ namespace euston_leisure_messages
                 messageBodyTb.Text = message.messageBody;
 
             }
-            //shows email data
+            // Normal Email.
             else if (m is Email)
             {
                 Email message = (Email)m;
                 messageLabel.Content += "Sender: ";
                 messageLabel.Content += message.sender + Environment.NewLine;
                 messageLabel.Content += "Subject: ";
-                messageLabel.Content += message.subject + Environment.NewLine;
+                messageLabel.Content += message.Subject + Environment.NewLine;
                 messageLabel.Content += " " + Environment.NewLine;
                 messageLabel.Content += " " + Environment.NewLine;
                 messageLabel.Content += " " + Environment.NewLine;
@@ -64,7 +76,7 @@ namespace euston_leisure_messages
                 messageLabel.Content += "Message: " + Environment.NewLine;
                 messageBodyTb.Text = message.messageBody;
             }
-            //shows SMS email data
+            // SMS.
             else if (m is SMS)
             {
                 SMS message = (SMS)m;
@@ -77,8 +89,9 @@ namespace euston_leisure_messages
                 messageLabel.Content += " " + Environment.NewLine;
                 messageLabel.Content += "Message: " + Environment.NewLine;
 
-                messageBodyTb.Text = getAbbreviations(message.messageBody);
+                messageBodyTb.Text = GetAbbreviations(message.messageBody);
             }
+            // Tweet.
             else if (m is Tweet)
             {
                 Tweet message = (Tweet)m;
@@ -91,13 +104,13 @@ namespace euston_leisure_messages
                 messageLabel.Content += " " + Environment.NewLine;
                 messageLabel.Content += "Message: " + Environment.NewLine;
 
-                messageBodyTb.Text = getAbbreviations(message.messageBody);
+                messageBodyTb.Text = GetAbbreviations(message.messageBody);
             }
         }
 
-        //replaces any textspeak words used inside the message
-        /// <param name="body">Message body to be checked for textspeak abbreviations</param>
-        public String getAbbreviations(string body)
+        // Adds the full length text next to the textspeak abbreviation.
+        /// <param name="body"> The message to be scanned for abbreviations.</param>
+        public String GetAbbreviations(string body)
         {
             string[] message = body.Split(' ');
             List<int> toChange = new List<int>();

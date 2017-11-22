@@ -6,18 +6,17 @@
         xmlns:local="clr-namespace:euston_leisure_messages.Views"
         mc:Ignorable="d"
         Title="AddSIR" Height="550" Width="308">
-    <Grid>
+    <Grid Background="#FFF0C4C4">
         <Label Content="Email Address" HorizontalAlignment="Left" Margin="10,89,0,0" VerticalAlignment="Top" Width="121" FontWeight="Bold"/>
-        <TextBox Name="emailTextbox" HorizontalAlignment="Left" Height="23" Margin="10,115,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="231"/>
+        <TextBox Name="emailTextbox" HorizontalAlignment="Left" Height="23" Margin="10,115,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="231"/>
         <Label Content="Message" HorizontalAlignment="Left" Margin="11,246,0,0" VerticalAlignment="Top" Width="121" FontWeight="Bold"/>
-        <TextBox Name="messageTextbox" HorizontalAlignment="Left" Height="181" Margin="10,272,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="272"/>
+        <TextBox Name="messageTextbox" HorizontalAlignment="Left" Height="181" Margin="10,272,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="272"/>
         <Button Content="Confirm" HorizontalAlignment="Left" Margin="10,472,0,0" VerticalAlignment="Top" Width="100" Height="30" Background="#FFC8D9EA" FontWeight="Bold" Click="Confirm_SIREmail_Button_Click"/>
         <Button Content="Close" HorizontalAlignment="Left" Margin="182,472,0,0" VerticalAlignment="Top" Width="100" Height="30" Background="#FFC8D9EA" FontWeight="Bold" Click="Close_SIREmail_Button_Click"/>
         <Label Content="Incident Type" HorizontalAlignment="Left" Margin="10,141,0,0" VerticalAlignment="Top" Width="121" FontWeight="Bold"/>
         <Label Content="Message ID" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Width="121" FontWeight="Bold"/>
-        <TextBox Name="id" HorizontalAlignment="Left" Height="23" Margin="38,66,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="203"/>
+        <TextBox Name="id" HorizontalAlignment="Left" Height="23" Margin="38,66,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
         <ComboBox Name="incidentTypeCombo" HorizontalAlignment="Left" Margin="11,167,0,0" VerticalAlignment="Top" Width="230" SelectedIndex="0">
-            <ComboBoxItem Content="Incident Type"/>
             <ComboBoxItem Content="Theft of Properties"/>
             <ComboBoxItem Content="Staff Attack"/>
             <ComboBoxItem Content="Device Damage"/>

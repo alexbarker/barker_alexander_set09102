@@ -19,16 +19,15 @@ namespace euston_leisure_messages.Views
     /// <summary>
     /// SET09102 2017-8 TR1 001 - Software Engineering
     /// Euston Leisure Message System
-    /// Version 0.4.5
+    /// Version 0.5.0
     /// Alexander Barker 
     /// 40333139
     /// Created on 30th October 2017
-    /// Last Updated on 20th November 2017
+    /// Last Updated on 22th November 2017
     /// </summary>
     /// <summary>
-    /// AddSMS.xaml.cs - 
+    /// AddSMS.xaml.cs - This class is responsible for gathering and validating user inputs for SMS message.
     /// </summary>
-
 
     public partial class AddSMS : Window
     {
@@ -44,40 +43,43 @@ namespace euston_leisure_messages.Views
 
         private void Confirm_SMS_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (validateInput())
+            if (ValidateSMS())
             {
-                string currentID = id.Text;
+                string currentID = id.Text; // Gets id from textbox.
+                // Forces message ID to be 9 characters.
                 if (currentID.Length < 9)
                 {
                     string zeros = String.Concat(Enumerable.Repeat("0", 9 - currentID.Length));
                     currentID = zeros + currentID;
 
                 }
-                currentID = "S" + currentID;
+                currentID = "S" + currentID; // Makes sure S is added to the message ID for SMS type.
 
+                // Creates SMS objects to be used later.
                 SMS sms = new SMS(currentID + " " + phoneNoTextbox.Text + " " + messageTextbox.Text);
                 MessageHolder.currentSMSID++;
-                MessageHolder.addMessage(currentID, sms);
+                MessageHolder.AddMessage(currentID, sms);
+
+                // Confirmation message for user.
+                MessageBox.Show("SMS Added!\n" + "Message ID: " + currentID + "\nPhone No.: " + phoneNoTextbox.Text + "\nMessage: " + messageTextbox.Text);
             }
         }
 
-        //validates the textboxes to ensure format meets the specification described in the
-        //initial documentation
-        public bool validateInput()
+        // Validates user input via textboxes.
+        public bool ValidateSMS()
         {
-            bool canAdd = true;
+            bool checker = true;
 
             int parsedValue;
             if (!int.TryParse(id.Text, out parsedValue))
             {
-                MessageBox.Show("This is a number only field");
-                canAdd = false;
+                MessageBox.Show("Please enter numbers only!");
+                checker = false;
             }
             if (id.Text.Length > 9 || String.IsNullOrEmpty(id.Text))
             {
-                MessageBox.Show("Invalid id");
-                //errorLbl.Content += "Message cant be more than 140 characters " + Environment.NewLine;
-                canAdd = false;
+                MessageBox.Show("Invalid ID!");
+                checker = false;
             }
 
             string phoneNo = phoneNoTextbox.Text.Replace(" ", "");
@@ -87,26 +89,26 @@ namespace euston_leisure_messages.Views
 
             if (!isNumeric || string.IsNullOrEmpty(phoneNo))
             {
-                MessageBox.Show("Please enter a valid number(International format).");
-                canAdd = false;
+                MessageBox.Show("Please enter a phone number!");
+                checker = false;
             }
             else if (phoneNo.Length != 12)
             {
-                MessageBox.Show("Please enter a valid number(International format) .");
-                canAdd = false;
+                MessageBox.Show("Please enter a valid phone number!");
+                checker = false;
             }
             if (messageTextbox.Text.Length >= 140)
             {
-                MessageBox.Show("140 Character maximum for message text.");
-                canAdd = false;
+                MessageBox.Show("Exceeded 140 characters!");
+                checker = false;
             }
             else if (string.IsNullOrEmpty(messageTextbox.Text))
             {
-                MessageBox.Show("Please enter a message ");
-                canAdd = false;
+                MessageBox.Show("Please enter a message!");
+                checker = false;
             }
 
-            return canAdd;
+            return checker;
         }
     }
 }

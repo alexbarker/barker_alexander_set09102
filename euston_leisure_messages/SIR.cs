@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
+using System.Windows;
 
 namespace euston_leisure_messages
 {
@@ -43,7 +44,9 @@ namespace euston_leisure_messages
             }
             else
             {
-                throw new ArgumentException("Centre Code not found!");
+                //throw new ArgumentException("Centre Code not found!");
+                MessageBox.Show("Invalid Centre Code!");
+                return;
             }
 
             regex = new Regex(@"Nature of Incident: (.+)"); // Searches message body for incident type.

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "euston_leisure_messages", "euston_leisure_messages\euston_leisure_messages.csproj", "{6ACC9E72-9113-434D-AB9F-21B6E75175CA}"
 EndProject

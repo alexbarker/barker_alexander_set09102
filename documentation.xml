@@ -1,0 +1,485 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>euston_leisure_messages</name>
+    </assembly>
+    <members>
+        <member name="T:euston_leisure_messages.CSVReader">
+            <summary>
+            SET09102 2017-8 TR1 001 - Software Engineering
+            Euston Leisure Message System
+            Version 1.0.0
+            Alexander Barker 
+            40333139
+            Created on 30th October 2017
+            Last Updated on 22nd November 2017
+            </summary>
+            <summary>
+            CSVReader.cs - This class adds the ability to read and write to CSV files.
+            </summary>
+        </member>
+        <member name="M:euston_leisure_messages.CSVReader.ReadFile(System.String)">
+            <param name="fileName">Gets the path name.</param>
+        </member>
+        <member name="M:euston_leisure_messages.CSVReader.OverwriteFile(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <param name="fileName">Gets the path name.</param>
+            <param name="data">Collects dictionary item to write to file.</param>
+        </member>
+        <member name="T:euston_leisure_messages.Email">
+            <summary>
+            SET09102 2017-8 TR1 001 - Software Engineering
+            Euston Leisure Message System
+            Version 1.0.0
+            Alexander Barker 
+            40333139
+            Created on 30th October 2017
+            Last Updated on 22nd November 2017
+            </summary>
+            <summary>
+            Email.cs - This class is used to process, store and validate Email messages.
+            </summary>
+        </member>
+        <member name="M:euston_leisure_messages.Email.#ctor(System.String)">
+            Creates and validates Email messages.
+            <param name="currentMessage">Creates an email string.</param>
+        </member>
+        <member name="M:euston_leisure_messages.Email.ValidateEmail(System.String,System.String,System.String)">
+            Makes sure email is in the correct format
+            <param name="sender">Email address.</param>
+            <param name="subject">Subject.</param>
+            <param name="body">Message text.</param>
+        </member>
+        <member name="M:euston_leisure_messages.Email.returnData">
+            Formats output for Json file.
+        </member>
+        <member name="T:euston_leisure_messages.Json">
+            <summary>
+            SET09102 2017-8 TR1 001 - Software Engineering
+            Euston Leisure Message System
+            Version 1.0.0
+            Alexander Barker 
+            40333139
+            Created on 30th October 2017
+            Last Updated on 22nd November 2017
+            </summary>
+            <summary>
+            Json.cs - This class is responsible for reading and writing to Json file. 
+            </summary>
+        </member>
+        <member name="P:euston_leisure_messages.Json.fileName">
+            Adds the Json filename to a variable.
+        </member>
+        <member name="M:euston_leisure_messages.Json.ReadJSON">
+            Reads/Converts the Json file and adds to dictionaries.    
+        </member>
+        <member name="M:euston_leisure_messages.Json.WriteData">
+            Adds new message to the Json file.
+        </member>
+        <member name="T:euston_leisure_messages.Message">
+            <summary>
+            SET09102 2017-8 TR1 001 - Software Engineering
+            Euston Leisure Message System
+            Version 1.0.0
+            Alexander Barker 
+            40333139
+            Created on 30th October 2017
+            Last Updated on 22nd November 2017
+            </summary>
+            <summary>
+            Message.cs - Gets/Set class for messages.
+            </summary>
+        </member>
+        <member name="T:euston_leisure_messages.MessageHolder">
+            <summary>
+            SET09102 2017-8 TR1 001 - Software Engineering
+            Euston Leisure Message System
+            Version 1.0.0
+            Alexander Barker 
+            40333139
+            Created on 30th October 2017
+            Last Updated on 22nd November 2017
+            </summary>
+            <summary>
+            MessageHolder.cs - Stores all aspects of a message in the correct data structures.
+            </summary>
+        </member>
+        <member name="M:euston_leisure_messages.MessageHolder.AddMessage(System.String,euston_leisure_messages.Message)">
+            <param name="id"> Message ID.</param>
+            <param name="m"> Message body.</param>
+        </member>
+        <member name="T:euston_leisure_messages.MessageReader">
+            <summary>
+            SET09102 2017-8 TR1 001 - Software Engineering
+            Euston Leisure Message System
+            Version 1.0.0
+            Alexander Barker 
+            40333139
+            Created on 30th October 2017
+            Last Updated on 22nd November 2017
+            </summary>
+            <summary>
+            MessageReader.cs - This class get the header and body objects from Json file.
+            </summary>
+        </member>
+        <member name="M:euston_leisure_messages.MessageReader.#ctor(System.String,System.String)">
+            Used to read from the Json file.
+            <param name="h"> Message header.</param>
+            <param name="b"> Message body.</param>
+        </member>
+        <member name="M:euston_leisure_messages.MessageReader.ConvertMessage(System.String)">
+            Selector based on message type.
+            <param name="messageIn"> Message from user.</param>
+        </member>
+        <member name="M:euston_leisure_messages.MessageReader.LoadMessage">
+            Makes message available after conversion.
+        </member>
+        <member name="M:euston_leisure_messages.MessageReader.GetEmailType(System.String)">
+            Seperates normal Email from SIR.
+            <param name="messageIn"> Message body.</param>
+        </member>
+        <member name="T:euston_leisure_messages.MessageReaderViewer">
+            <summary>
+            SET09102 2017-8 TR1 001 - Software Engineering
+            Euston Leisure Message System
+            Version 1.0.0
+            Alexander Barker 
+            40333139
+            Created on 30th October 2017
+            Last Updated on 22nd November 2017
+            </summary>
+            <summary>
+            MessageReaderViewer.cs - This class outputs the message data to a viewer window.
+            </summary>
+            <summary>
+            MessageReaderViewer
+            </summary>
+        </member>
+        <member name="M:euston_leisure_messages.MessageReaderViewer.LoadContent(euston_leisure_messages.Message)">
+            Displays data to the window.
+            <param name="m"> Message to be displayed.</param>
+        </member>
+        <member name="M:euston_leisure_messages.MessageReaderViewer.GetAbbreviations(System.String)">
+            <param name="body"> The message to be scanned for abbreviations.</param>
+        </member>
+        <member name="M:euston_leisure_messages.MessageReaderViewer.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:euston_leisure_messages.MessageRefresher">
+            <summary>
+            SET09102 2017-8 TR1 001 - Software Engineering
+            Euston Leisure Message System
+            Version 1.0.0
+            Alexander Barker 
+            40333139
+            Created on 30th October 2017
+            Last Updated on 22nd November 2017
+            </summary>
+            <summary>
+            MessageRefresher.cs - This class is responsible for refreshing the page when new messages are added.
+            </summary>
+        </member>
+        <member name="M:euston_leisure_messages.MessageRefresher.RefreshMessages">
+            Timer used to refresh messages.
+        </member>
+        <member name="M:euston_leisure_messages.MessageRefresher.Notify">
+            Notify that a change has occurred.
+        </member>
+        <member name="T:euston_leisure_messages.MessageViewer">
+            <summary>
+            SET09102 2017-8 TR1 001 - Software Engineering
+            Euston Leisure Message System
+            Version 1.0.0
+            Alexander Barker 
+            40333139
+            Created on 30th October 2017
+            Last Updated on 22nd November 2017
+            </summary>
+            <summary>
+            MessageViewer.cs - This class creates a list of clickable messages of viewing.
+            </summary>
+            <summary>
+            MessageViewer
+            </summary>
+        </member>
+        <member name="M:euston_leisure_messages.MessageViewer.RefreshData(System.String)">
+            Get all the boxes.
+            <param name="getType">Get the type of message.</param>
+        </member>
+        <member name="M:euston_leisure_messages.MessageViewer.MakeList(System.String,System.String,System.String)">
+            <param name="header">Message header.</param>
+            <param name="body">Message body.</param>
+            <param name="messageType">Message type.</param>
+        </member>
+        <member name="M:euston_leisure_messages.MessageViewer.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:euston_leisure_messages.INotifier">
+            <summary>
+            SET09102 2017-8 TR1 001 - Software Engineering
+            Euston Leisure Message System
+            Version 1.0.0
+            Alexander Barker 
+            40333139
+            Created on 30th October 2017
+            Last Updated on 22nd November 2017
+            </summary>
+            <summary>
+            Notifier.cs - This class informs application of new message added.
+            </summary>
+        </member>
+        <member name="T:euston_leisure_messages.SIR">
+            <summary>
+            SET09102 2017-8 TR1 001 - Software Engineering
+            Euston Leisure Message System
+            Version 1.0.0
+            Alexander Barker 
+            40333139
+            Created on 30th October 2017
+            Last Updated on 22nd November 2017
+            </summary>
+            <summary>
+            SIR.cs - This class is used to process, store and validate SIR Email messages.
+            </summary>
+        </member>
+        <member name="M:euston_leisure_messages.SIR.#ctor(System.String)">
+            <summary>
+            Validates Centre Code and Incident Type.
+            </summary>
+            <param name="messageIn"> Message body.</param>
+        </member>
+        <member name="T:euston_leisure_messages.SMS">
+            <summary>
+            SET09102 2017-8 TR1 001 - Software Engineering
+            Euston Leisure Message System
+            Version 1.0.0
+            Alexander Barker 
+            40333139
+            Created on 30th October 2017
+            Last Updated on 22nd November 2017
+            </summary>
+            <summary>
+            SMS.cs - This class is responsible for validating and storing SMS messages.
+            </summary>
+        </member>
+        <member name="M:euston_leisure_messages.SMS.#ctor(System.String)">
+            <summary>
+            SMS validation, adds to dictionary.
+            </summary>
+            <param name="messageIn">Messsage body.</param>
+        </member>
+        <member name="M:euston_leisure_messages.SMS.returnData">
+            <summary>
+            Formats message for Json file.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:euston_leisure_messages.Tweet">
+            <summary>
+            SET09102 2017-8 TR1 001 - Software Engineering
+            Euston Leisure Message System
+            Version 1.0.0
+            Alexander Barker 
+            40333139
+            Created on 30th October 2017
+            Last Updated on 22nd November 2017
+            </summary>
+            <summary>
+            Tweet.cs - This class is responsible for validating and preparing Tweet messages.
+            </summary>
+        </member>
+        <member name="M:euston_leisure_messages.Tweet.#ctor(System.String)">
+            <summary>
+            Tweet validation, adds new Tweet.
+            </summary>
+            <param name="messageIn">Message body.</param>
+        </member>
+        <member name="T:euston_leisure_messages.ViewMessage">
+            <summary>
+            SET09102 2017-8 TR1 001 - Software Engineering
+            Euston Leisure Message System
+            Version 1.0.0
+            Alexander Barker 
+            40333139
+            Created on 30th October 2017
+            Last Updated on 22nd November 2017
+            </summary>
+            <summary>
+            ViewMessage.cs - This class displays an individual message inside the current window.
+            </summary>
+            <summary>
+            ViewMessage
+            </summary>
+        </member>
+        <member name="M:euston_leisure_messages.ViewMessage.#ctor(System.String)">
+            <summary>
+            Displays message inside a textbox.
+            </summary>
+            <param name="m1">Message body.</param>
+        </member>
+        <member name="M:euston_leisure_messages.ViewMessage.#ctor(System.Windows.Controls.Page)">
+            <summary>
+            Add the new view as a page.
+            </summary>
+            <param name="addBox">Add the box that displays message.</param>
+        </member>
+        <member name="M:euston_leisure_messages.ViewMessage.CreateBox(System.String)">
+            <summary>
+            Talks to the refresher.
+            </summary>
+            <param name="m">Message body</param>
+        </member>
+        <member name="M:euston_leisure_messages.ViewMessage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:euston_leisure_messages.Views.AddEmail">
+            <summary>
+            SET09102 2017-8 TR1 001 - Software Engineering
+            Euston Leisure Message System
+            Version 1.0.0
+            Alexander Barker 
+            40333139
+            Created on 30th October 2017
+            Last Updated on 22nd November 2017
+            </summary>
+            <summary>
+            AddEmail.xaml.cs - This class is responsible for collecting and storing user inputs for email type messages.
+            </summary>
+            <summary>
+            AddEmail
+            </summary>
+        </member>
+        <member name="M:euston_leisure_messages.Views.AddEmail.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:euston_leisure_messages.Views.AddSIR">
+            <summary>
+            SET09102 2017-8 TR1 001 - Software Engineering
+            Euston Leisure Message System
+            Version 1.0.0
+            Alexander Barker 
+            40333139
+            Created on 30th October 2017
+            Last Updated on 22nd November 2017
+            </summary>
+            <summary>
+            AddSIR.xaml.cs - This class is responsible for gathering and vaildating user inputs for SIR email.
+            </summary>
+            <summary>
+            AddSIR
+            </summary>
+        </member>
+        <member name="M:euston_leisure_messages.Views.AddSIR.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:euston_leisure_messages.Views.AddSMS">
+            <summary>
+            SET09102 2017-8 TR1 001 - Software Engineering
+            Euston Leisure Message System
+            Version 1.0.0
+            Alexander Barker 
+            40333139
+            Created on 30th October 2017
+            Last Updated on 22nd November 2017
+            </summary>
+            <summary>
+            AddSMS.xaml.cs - This class is responsible for gathering and validating user inputs for SMS message.
+            </summary>
+            <summary>
+            AddSMS
+            </summary>
+        </member>
+        <member name="M:euston_leisure_messages.Views.AddSMS.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:euston_leisure_messages.Views.AddTweet">
+            <summary>
+            SET09102 2017-8 TR1 001 - Software Engineering
+            Euston Leisure Message System
+            Version 1.0.0
+            Alexander Barker 
+            40333139
+            Created on 30th October 2017
+            Last Updated on 22nd November 2017
+            </summary>
+            <summary>
+            AddTweet.xaml.cs - This class is responsible for gathering and validating Tweet messages.
+            </summary>
+            <summary>
+            AddTweet
+            </summary>
+        </member>
+        <member name="M:euston_leisure_messages.Views.AddTweet.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:euston_leisure_messages.App">
+            <summary>
+            Interaction logic for App.xaml
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:euston_leisure_messages.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:euston_leisure_messages.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="T:euston_leisure_messages.MainWindow">
+            <summary>
+            SET09102 2017-8 TR1 001 - Software Engineering
+            Euston Leisure Message System
+            Version 1.0.0
+            Alexander Barker 
+            40333139
+            Created on 30th October 2017
+            Last Updated on 22nd November 2017
+            </summary>
+            <summary>
+            MainWindow.xaml.cs - This class is the main window of the application. Processes all user inputs via button or drop-down lists.
+            </summary>
+            <summary>
+            MainWindow
+            </summary>
+        </member>
+        <member name="M:euston_leisure_messages.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:euston_leisure_messages.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:euston_leisure_messages.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:euston_leisure_messages.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

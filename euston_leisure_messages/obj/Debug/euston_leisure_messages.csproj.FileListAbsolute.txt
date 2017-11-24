@@ -44,3 +44,4 @@ C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\MessageRe
 C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\MessageViewer.baml
 C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\ViewMessage.baml
 C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\obj\Debug\euston_leisure_messages.csprojResolveAssemblyReference.cache
+C:\Users\alexb\source\repos\SET09102\euston_leisure_messages\bin\Debug\documentation.xml
